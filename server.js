@@ -237,7 +237,7 @@ function renderGrid(agents) {
   if (agents.length === 0) {
     return '<div class="empty">Aucun résultat pour cette recherche</div>';
   }
-  return `<div class="grid" id="grid">${agents.map(renderAgentCard).join('\n')}</div>`;
+  return agents.map(renderAgentCard).join('\n');
 }
 
 function renderListPage(agents, categories) {
