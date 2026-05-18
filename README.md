@@ -1,6 +1,12 @@
 # Claude Marketplace Browser
 
-Interface web pour explorer les plugins d'un marketplace Claude.
+A lightweight web UI for browsing Claude plugin marketplaces. Displays plugins, their components (skills, agents, MCP servers, hooks, etc.), and renders their documentation in a clean interface.
+
+[![GitLab Pages](https://img.shields.io/badge/Live%20Demo-GitLab%20Pages-orange)](https://liksi.gitlab.io/claude-marketplace-browser)
+
+## Overview
+
+The browser reads a `marketplace.json` file from a local directory and serves a searchable, filterable plugin gallery. Each plugin card links to a detail page showing its README and component documentation.
 
 ## Installation
 
@@ -8,55 +14,73 @@ Interface web pour explorer les plugins d'un marketplace Claude.
 npm install
 ```
 
-## Lancement
+## Usage
 
 ```bash
-node server.js
+# Start the server (default: http://localhost:3000)
+npm start
+
+# Start with live-reload during development
+npm run dev
 ```
 
-Puis ouvrir http://localhost:3000
+Open http://localhost:3000 in your browser.
 
-## Configuration du marketplace
+## Configuration
 
-Par défaut, le serveur utilise le dossier `./example` comme source de plugins.
+By default the server reads plugins from the `./example` directory.
 
-Pour pointer vers un autre dossier :
+Point it to another directory via CLI argument or environment variable:
 
 ```bash
-# Via argument CLI
+# CLI argument
 node server.js --marketplace /path/to/marketplace
 
-# Via variable d'environnement
-MARKETPLACE_PATH=/path/to/marketplace node server.js
+# Environment variable
+MARKETPLACE_PATH=/path/to/marketplace npm start
 ```
 
-Le dossier cible doit contenir `.claude-plugin/marketplace.json`.
+The target directory must contain a `.claude-plugin/marketplace.json` file.
 
-## Format de marketplace.json
+## Marketplace Format
+
+`marketplace.json` structure:
 
 ```json
 {
-  "name": "Mon Marketplace",
-  "owner": "Equipe",
+  "name": "My Marketplace",
+  "owner": "Team Name",
   "plugins": [
     {
-      "name": "mon-plugin",
-      "description": "Description du plugin",
+      "name": "my-plugin",
+      "description": "What this plugin does",
       "category": "Development",
       "version": "1.0.0",
-      "skills": ["nom-du-skill"],
-      "mcpServers": ["nom-serveur"]
+      "skills": ["skill-name"],
+      "mcpServers": ["server-name"]
     }
   ]
 }
 ```
 
-Champs de composants supportés : `skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`.
+Supported component fields: `skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`.
 
-## Fallback HTMX offline
+Each component name resolves to a Markdown file inside the plugin directory under `.claude/<type>/<name>.md`. A special value `"./"` reads `SKILL.md` or `README.md` from the plugin root.
+
+## Offline HTMX Fallback
+
+The UI uses HTMX for dynamic search. If you need to run without CDN access, vendor the script locally:
 
 ```bash
 npm run vendor
 ```
 
-Télécharge `htmx.min.js` dans `vendor/` pour un usage sans accès CDN.
+This downloads `htmx.min.js` into `vendor/` and the server serves it as a fallback.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+MIT — see [LICENSE](LICENSE).

@@ -1,0 +1,11 @@
+image: node:20-slim
+
+pages:
+  script:
+    - npm ci
+    - node scripts/build-static.js
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

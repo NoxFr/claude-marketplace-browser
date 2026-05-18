@@ -5,7 +5,7 @@ const path = require('path');
 const { marked } = require('marked');
 const { MARKETPLACE_PATH } = require('./browser.config');
 
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
 function escapeHtml(str) {
   if (!str) return '';
