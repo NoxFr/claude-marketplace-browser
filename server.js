@@ -16,6 +16,10 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+function stripFrontmatter(content) {
+  return content.replace(/^---[\s\S]*?---\n?/, '');
+}
+
 const COMPONENT_TYPES = [
   { field: 'skills',     dir: 'skills',   label: 'Skills' },
   { field: 'commands',   dir: 'commands', label: 'Commands' },
@@ -30,7 +34,7 @@ function readComponentFiles(pluginDir, dirName, names) {
     if (name === './') {
       for (const filename of ['SKILL.md', 'README.md']) {
         try {
-          const content = fs.readFileSync(path.join(pluginDir, filename), 'utf8');
+          const content = stripFrontmatter(fs.readFileSync(path.join(pluginDir, filename), 'utf8'));
           acc.push({ name: filename.replace('.md', ''), content });
           break;
         } catch (err) {
@@ -39,7 +43,7 @@ function readComponentFiles(pluginDir, dirName, names) {
       }
     } else {
       try {
-        const content = fs.readFileSync(path.join(pluginDir, '.claude', dirName, `${name}.md`), 'utf8');
+        const content = stripFrontmatter(fs.readFileSync(path.join(pluginDir, '.claude', dirName, `${name}.md`), 'utf8'));
         acc.push({ name, content });
       } catch (err) {
         if (err.code !== 'ENOENT') throw err;
@@ -84,7 +88,7 @@ function readAgentDetail(name) {
   for (const filename of ['SKILL.md', 'README.md']) {
     const filePath = path.join(agentDir, filename);
     try {
-      const content = fs.readFileSync(filePath, 'utf8');
+      const content = stripFrontmatter(fs.readFileSync(filePath, 'utf8'));
       readmeHtml = marked(content);
       break;
     } catch (_) {}
@@ -189,7 +193,17 @@ function layout(title, body) {
     .component-summary::-webkit-details-marker { display: none; }
     .component-summary::before { content: '▶'; font-size: 0.6em; color: #9ca3af; transition: transform 0.15s; flex-shrink: 0; }
     details[open] > .component-summary::before { transform: rotate(90deg); }
-    .component-content { padding: 1.5rem; border-top: 1px solid #eaecf0; }
+    .component-content { padding: 1.5rem 2rem; border-top: 1px solid #eaecf0; line-height: 1.6; }
+    .component-content h1, .component-content h2, .component-content h3, .component-content h4 { margin: 1.5rem 0 0.75rem; color: #16213e; font-weight: 600; }
+    .component-content h1:first-child, .component-content h2:first-child { margin-top: 0; }
+    .component-content p { margin-bottom: 1rem; color: #4b5563; }
+    .component-content ul, .component-content ol { margin: 0 0 1rem 1.5rem; color: #4b5563; }
+    .component-content li { margin-bottom: 0.25rem; }
+    .component-content code { background: #f3f4f6; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.875em; font-family: 'SFMono-Regular', Consolas, monospace; }
+    .component-content pre { background: #1a1a2e; color: #e2e8f0; padding: 1.25rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem; }
+    .component-content pre code { background: none; color: inherit; padding: 0; }
+    .component-content blockquote { border-left: 3px solid #e5e7eb; padding-left: 1rem; color: #6b7280; margin-bottom: 1rem; }
+    .component-content hr { border: none; border-top: 1px solid #eaecf0; margin: 1.5rem 0; }
   </style>
 </head>
 <body hx-boost="true">
@@ -258,7 +272,7 @@ function renderDetailPage(agent, readmeHtml, components) {
           ${group.files.map(file => `
             <details class="component-accordion" open>
               <summary class="component-summary">${escapeHtml(file.name)}</summary>
-              <div class="component-content detail-readme">${marked(file.content)}</div>
+              <div class="component-content">${marked(file.content)}</div>
             </details>`).join('')}
         </div>`).join('')}
     </div>` : '';
