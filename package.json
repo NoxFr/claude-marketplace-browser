@@ -3,11 +3,20 @@
   "version": "1.0.0",
   "description": "Browser web pour explorer les plugins d'un marketplace Claude",
   "main": "server.js",
+  "bin": {
+    "claude-marketplace-browser": "scripts/build.js"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "vendor": "node scripts/vendor.js"
+    "build": "node scripts/build.js"
   },
+  "files": [
+    "scripts/",
+    "lib/",
+    "public/",
+    "browser.config.js"
+  ],
   "dependencies": {
     "js-yaml": "^4.1.0",
     "marked": "^9.0.0"

@@ -1,4 +1,3 @@
 node_modules/
-vendor/
-public/
+dist/
 .playwright-mcp

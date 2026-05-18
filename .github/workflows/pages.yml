@@ -23,10 +23,10 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: node scripts/build-static.js
+      - run: node scripts/build.js
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: dist
 
   deploy:
     needs: build

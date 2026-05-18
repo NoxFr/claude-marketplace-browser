@@ -3,7 +3,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { readAgents, readAgentDetail, filterByType, readMarketplaceMeta } = require('./lib/data');
-const { escapeHtml, layout, renderGrid, renderListPage, renderDetailPage } = require('./lib/render');
+const { escapeHtml, layout, renderListPage, renderDetailPage } = require('./lib/render');
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const { MARKETPLACE_URL } = require('./browser.config');
@@ -19,26 +19,6 @@ const server = http.createServer((req, res) => {
     const categories = [...new Set(agents.map(a => a.category).filter(Boolean))].sort();
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(renderListPage(agents, categories, type, MARKETPLACE_URL));
-    return;
-  }
-
-  if (req.method === 'GET' && pathname === '/search') {
-    const q = (url.searchParams.get('q') || '').toLowerCase().trim();
-    const category = (url.searchParams.get('category') || '').trim();
-    const type = (url.searchParams.get('type') || '').trim();
-    let agents = readAgents();
-    if (type) agents = filterByType(agents, type);
-    if (q) {
-      agents = agents.filter(a =>
-        (a.name && a.name.toLowerCase().includes(q)) ||
-        (a.description && a.description.toLowerCase().includes(q))
-      );
-    }
-    if (category) {
-      agents = agents.filter(a => a.category === category);
-    }
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(renderGrid(agents));
     return;
   }
 
@@ -76,11 +56,11 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.method === 'GET' && pathname === '/vendor/htmx.min.js') {
-    const vendorPath = path.join(__dirname, 'vendor', 'htmx.min.js');
+  if (req.method === 'GET' && pathname === '/search.js') {
+    const jsPath = path.join(__dirname, 'public', 'search.js');
     try {
-      const content = fs.readFileSync(vendorPath);
-      res.writeHead(200, { 'Content-Type': 'application/javascript' });
+      const content = fs.readFileSync(jsPath);
+      res.writeHead(200, { 'Content-Type': 'application/javascript; charset=utf-8' });
       res.end(content);
     } catch (_) {
       res.writeHead(404);
