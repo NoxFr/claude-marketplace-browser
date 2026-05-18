@@ -1,4 +1,8 @@
-## ADDED Requirements
+## Purpose
+
+Page de détail d'un plugin du marketplace : affiche le hero avec badge, version, bouton "Install Plugin" fonctionnel, les métadonnées, le README et les composants en accordéons dépliables.
+
+## Requirements
 
 ### Requirement: Layout centré max-800px pour la page détail
 La page détail SHALL utiliser un layout centré avec `max-width: 800px` dans le contenu principal, avec `lg:pl-64` pour tenir compte de la sidebar.
@@ -8,11 +12,15 @@ La page détail SHALL utiliser un layout centré avec `max-width: 800px` dans le
 - **THEN** le contenu est centré et ne dépasse pas 800px de large
 
 ### Requirement: Hero section avec badge de type, version et bouton install
-La page détail SHALL afficher en haut : le badge de type primaire, la version en `font-code-sm`, le titre en `font-headline-lg text-primary`, la description, et un bouton "Install Plugin" (placeholder, pas de comportement requis).
+La page détail SHALL afficher en haut : le badge de type primaire, la version en `font-code-sm`, le titre en `font-headline-lg text-primary`, la description, et un bouton "Install Plugin" fonctionnel. Au clic, ce bouton copie la commande `claude plugin install <plugin-name>@<marketplace-slug>` dans le presse-papier et affiche un feedback visuel. Le bouton SHALL porter un attribut `data-command` contenant la commande pré-calculée côté serveur.
 
 #### Scenario: Badge de type affiché dans le hero
 - **WHEN** un plugin avec des composants est affiché
 - **THEN** le premier type de composant est affiché comme badge dans le hero (ex: "MCP SERVER", "SKILL")
+
+#### Scenario: Bouton Install Plugin fonctionnel
+- **WHEN** l'utilisateur clique sur le bouton "Install Plugin"
+- **THEN** la commande `claude plugin install <plugin-name>@<marketplace-slug>` est copiée dans le presse-papier et un feedback visuel confirme l'action pendant 1500ms
 
 ### Requirement: Metadata grid 4 colonnes
 La page détail SHALL afficher une grille de métadonnées (`grid-cols-2 md:grid-cols-4`) avec les champs disponibles parmi : Category, Author, License, Updated — en affichant uniquement les champs disponibles dans les données du plugin.
