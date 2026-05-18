@@ -18,7 +18,7 @@
 
 ## 3. Templates HTML (fonction de rendu inline dans server.js)
 
-- [x] 3.1 Créer la fonction `layout(title, body)` → HTML complet avec `<head>` HTMX + CSS inline + footer "Made with love by Mathieu Durand ❤️"
+- [x] 3.1 Créer la fonction `layout(title, body)` → HTML complet avec `<head>` HTMX + CSS inline + footer "Made with ❤️ by Mathieu Durand"
 - [x] 3.1b Créer la fonction `renderComponentLabels(plugin)` → badges HTML pour chaque type détecté (`skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`), label `Plugin` si aucun champ présent
 - [x] 3.2 Créer la fonction `renderAgentCard(agent)` → HTML d'une carte agent (nom, description, catégorie, version, labels de composants via `renderComponentLabels`, lien détail)
 - [x] 3.3 Créer la fonction `renderGrid(agents)` → grille de cartes (fragment réutilisé par `/` et `/search`)

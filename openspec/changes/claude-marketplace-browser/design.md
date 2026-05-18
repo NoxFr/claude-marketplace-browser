@@ -65,7 +65,7 @@ Les types sont lus exclusivement depuis `marketplace.json`. Pour chaque plugin e
 Pas de framework CSS. ~100 lignes de CSS custom pour rendre l'interface lisible.
 
 ### Footer
-Footer fixe dans `layout()` : "Made with love by Mathieu Durand ❤️"
+Footer fixe dans `layout()` : "Made with ❤️ by Mathieu Durand"
 
 ## Risks / Trade-offs
 

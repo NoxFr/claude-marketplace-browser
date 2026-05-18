@@ -146,7 +146,7 @@ function layout(title, body) {
   <main>
     ${body}
   </main>
-  <footer>Made with love by Mathieu Durand ❤️</footer>
+  <footer>Made with ❤️ by Mathieu Durand</footer>
 </body>
 </html>`;
 }
