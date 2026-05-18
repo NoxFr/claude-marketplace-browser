@@ -27,12 +27,23 @@ const COMPONENT_TYPES = [
 
 function readComponentFiles(pluginDir, dirName, names) {
   return names.reduce((acc, name) => {
-    const filePath = path.join(pluginDir, '.claude', dirName, `${name}.md`);
-    try {
-      const content = fs.readFileSync(filePath, 'utf8');
-      acc.push({ name, content });
-    } catch (err) {
-      if (err.code !== 'ENOENT') throw err;
+    if (name === './') {
+      for (const filename of ['SKILL.md', 'README.md']) {
+        try {
+          const content = fs.readFileSync(path.join(pluginDir, filename), 'utf8');
+          acc.push({ name: filename.replace('.md', ''), content });
+          break;
+        } catch (err) {
+          if (err.code !== 'ENOENT') throw err;
+        }
+      }
+    } else {
+      try {
+        const content = fs.readFileSync(path.join(pluginDir, '.claude', dirName, `${name}.md`), 'utf8');
+        acc.push({ name, content });
+      } catch (err) {
+        if (err.code !== 'ENOENT') throw err;
+      }
     }
     return acc;
   }, []);
@@ -67,7 +78,9 @@ function readAgentDetail(name) {
   if (!agent) return null;
 
   let readmeHtml = null;
-  const agentDir = path.resolve(MARKETPLACE_PATH, name);
+  const agentDir = agent.source
+    ? path.resolve(MARKETPLACE_PATH, agent.source)
+    : path.resolve(MARKETPLACE_PATH, name);
   for (const filename of ['SKILL.md', 'README.md']) {
     const filePath = path.join(agentDir, filename);
     try {
