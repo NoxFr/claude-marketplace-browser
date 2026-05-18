@@ -4,9 +4,32 @@ A lightweight web UI for browsing Claude plugin marketplaces. Displays plugins, 
 
 [![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue)](https://noxfr.github.io/claude-marketplace-browser)
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Marketplace Format](#marketplace-format)
+- [Stack](#stack)
+- [Offline HTMX Fallback](#offline-htmx-fallback)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Overview
 
 The browser reads a `marketplace.json` file from a local directory and serves a searchable, filterable plugin gallery. Each plugin card links to a detail page showing its README and component documentation.
+
+## Features
+
+- Searchable and filterable plugin gallery (by name, description, category)
+- Plugin detail pages with rendered README and per-component documentation
+- Support for all Claude plugin component types: skills, commands, agents, hooks, MCP servers, LSP servers
+- Color-coded badges per component type
+- Markdown rendering for plugin and component documentation (with syntax-highlighted code blocks)
+- Static snapshot export for hosting on GitLab/GitHub Pages
+- Offline mode with vendored HTMX fallback
 
 ## Installation
 
@@ -66,6 +89,14 @@ The target directory must contain a `.claude-plugin/marketplace.json` file.
 Supported component fields: `skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`.
 
 Each component name resolves to a Markdown file inside the plugin directory under `.claude/<type>/<name>.md`. A special value `"./"` reads `SKILL.md` or `README.md` from the plugin root.
+
+## Stack
+
+- **Runtime**: Node.js (no framework, built-in `http` module)
+- **Frontend**: [HTMX](https://htmx.org/) for dynamic search/filtering without JavaScript
+- **Templating**: Server-side HTML string rendering
+- **Markdown**: [marked](https://marked.js.org/) for plugin README and component docs
+- **Config parsing**: [js-yaml](https://github.com/nodeca/js-yaml)
 
 ## Offline HTMX Fallback
 
