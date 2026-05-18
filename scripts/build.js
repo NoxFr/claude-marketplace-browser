@@ -29,7 +29,7 @@ function rewriteForIndex(html) {
     .replace(/href="\/styles\.css"/g, 'href="styles.css"')
     .replace(/src="\/search\.js"/g, 'src="search.js"')
     .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="agents/${name}/index.html"`)
-    .replace(/href="\/(?:\?[^"]*)?"/g, 'href="index.html"');
+    .replace(/href="\/((\?[^"]*)?)"/g, (_, qs) => `href="index.html${qs}"`);
 }
 
 // Rewrite absolute paths for agent detail pages (dist/agents/{name}/index.html)
@@ -38,7 +38,7 @@ function rewriteForAgent(html) {
     .replace(/href="\/styles\.css"/g, 'href="../../styles.css"')
     .replace(/src="\/search\.js"/g, 'src="../../search.js"')
     .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="../../agents/${name}/index.html"`)
-    .replace(/href="\/(?:\?[^"]*)?"/g, 'href="../../index.html"');
+    .replace(/href="\/((\?[^"]*)?)"/g, (_, qs) => `href="../../index.html${qs}"`);
 }
 
 function build() {

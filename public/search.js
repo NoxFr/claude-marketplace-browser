@@ -1,9 +1,15 @@
 'use strict';
 
+const TYPE_DATASET_KEY = {
+  agents: 'typeAgents',
+  mcpServers: 'typeMcpServers',
+};
+
 class FilterState {
-  constructor(q = '', category = '') {
+  constructor(q = '', category = '', type = '') {
     this.q = q.toLowerCase().trim();
     this.category = category.trim().toLowerCase();
+    this.type = type.trim();
   }
 }
 
@@ -11,6 +17,10 @@ class CardMatcher {
   static matches(dataset, state) {
     if (state.q && !dataset.name.includes(state.q) && !dataset.description.includes(state.q)) return false;
     if (state.category && dataset.category !== state.category) return false;
+    if (state.type) {
+      const key = TYPE_DATASET_KEY[state.type];
+      if (key && dataset[key] !== 'true') return false;
+    }
     return true;
   }
 }
@@ -67,12 +77,16 @@ class SearchController {
     if (this.categorySelect) {
       this.categorySelect.addEventListener('change', () => this._apply());
     }
+
+    this._apply();
   }
 
   _apply() {
+    const params = new URLSearchParams(window.location.search);
     const state = new FilterState(
       this.searchInput ? this.searchInput.value : '',
-      this.categorySelect ? this.categorySelect.value : ''
+      this.categorySelect ? this.categorySelect.value : '',
+      params.get('type') || ''
     );
     this.updater.update(state);
   }
