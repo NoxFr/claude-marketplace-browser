@@ -2,7 +2,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { readAgents, readAgentDetail } = require('./lib/data');
+const { readAgents, readAgentDetail, filterByType } = require('./lib/data');
 const { escapeHtml, layout, renderGrid, renderListPage, renderDetailPage } = require('./lib/render');
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
@@ -12,17 +12,21 @@ const server = http.createServer((req, res) => {
   const pathname = url.pathname;
 
   if (req.method === 'GET' && pathname === '/') {
-    const agents = readAgents();
+    const type = url.searchParams.get('type') || '';
+    let agents = readAgents();
+    if (type) agents = filterByType(agents, type);
     const categories = [...new Set(agents.map(a => a.category).filter(Boolean))].sort();
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(renderListPage(agents, categories));
+    res.end(renderListPage(agents, categories, type));
     return;
   }
 
   if (req.method === 'GET' && pathname === '/search') {
     const q = (url.searchParams.get('q') || '').toLowerCase().trim();
     const category = (url.searchParams.get('category') || '').trim();
+    const type = (url.searchParams.get('type') || '').trim();
     let agents = readAgents();
+    if (type) agents = filterByType(agents, type);
     if (q) {
       agents = agents.filter(a =>
         (a.name && a.name.toLowerCase().includes(q)) ||
@@ -42,11 +46,13 @@ const server = http.createServer((req, res) => {
     const result = readAgentDetail(name);
     if (!result) {
       res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(layout('Plugin introuvable', `
-        <div class="error-page">
-          <h2>Plugin introuvable</h2>
-          <p>Le plugin <strong>${escapeHtml(name)}</strong> n'existe pas dans ce marketplace.</p>
-          <a class="back-link" href="/">← Retour à la liste</a>
+      res.end(layout('Plugin not found', `
+        <div class="text-center py-16">
+          <h2 class="font-headline-lg text-headline-lg text-status-error mb-4">Plugin not found</h2>
+          <p class="font-body-base text-body-base text-on-surface-variant mb-6">The plugin <strong>${escapeHtml(name)}</strong> does not exist in this marketplace.</p>
+          <a class="inline-flex items-center gap-2 text-slate-400 hover:text-vibrant-blue transition-colors font-body-sm text-body-sm no-underline" href="/">
+            <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to list
+          </a>
         </div>`));
       return;
     }
@@ -82,10 +88,12 @@ const server = http.createServer((req, res) => {
   }
 
   res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-  res.end(layout('404', `
-    <div class="error-page">
-      <h2>Page introuvable</h2>
-      <a class="back-link" href="/">← Retour à la liste</a>
+  res.end(layout('404 — Not found', `
+    <div class="text-center py-16">
+      <h2 class="font-headline-lg text-headline-lg text-status-error mb-4">Page not found</h2>
+      <a class="inline-flex items-center gap-2 text-slate-400 hover:text-vibrant-blue transition-colors font-body-sm text-body-sm no-underline" href="/">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to list
+      </a>
     </div>`));
 });
 
