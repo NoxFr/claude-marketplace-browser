@@ -47,6 +47,7 @@ function injectBanner(html) {
 function rewriteLinksForIndex(html) {
   return html
     .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="agents/${name}.html"`)
+    .replace(/href="\/styles\.css"/g, 'href="styles.css"')
     .replace(/src="https:\/\/unpkg\.com\/htmx[^"]*"/g, '')
     .replace(/onerror="[^"]*"\/vendor\/htmx\.min\.js[^"]*"/g, '');
 }
@@ -55,6 +56,7 @@ function rewriteLinksForAgent(html) {
   return html
     .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="${name}.html"`)
     .replace(/href="\/"/g, 'href="../index.html"')
+    .replace(/href="\/styles\.css"/g, 'href="../styles.css"')
     .replace(/src="https:\/\/unpkg\.com\/htmx[^"]*"/g, '')
     .replace(/onerror="[^"]*"\/vendor\/htmx\.min\.js[^"]*"/g, '');
 }
