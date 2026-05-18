@@ -16,6 +16,28 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+const COMPONENT_TYPES = [
+  { field: 'skills',     dir: 'skills',   label: 'Skills' },
+  { field: 'commands',   dir: 'commands', label: 'Commands' },
+  { field: 'agents',     dir: 'agents',   label: 'Agents' },
+  { field: 'hooks',      dir: 'hooks',    label: 'Hooks' },
+  { field: 'mcpServers', dir: 'mcp',      label: 'MCP Servers' },
+  { field: 'lspServers', dir: 'lsp',      label: 'LSP Servers' },
+];
+
+function readComponentFiles(pluginDir, dirName, names) {
+  return names.reduce((acc, name) => {
+    const filePath = path.join(pluginDir, '.claude', dirName, `${name}.md`);
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      acc.push({ name, content });
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err;
+    }
+    return acc;
+  }, []);
+}
+
 function readAgents() {
   const marketplacePath = path.resolve(MARKETPLACE_PATH, '.claude-plugin', 'marketplace.json');
   try {
@@ -55,7 +77,17 @@ function readAgentDetail(name) {
     } catch (_) {}
   }
 
-  return { agent, readmeHtml };
+  const components = COMPONENT_TYPES.reduce((acc, { field, dir, label }) => {
+    const declared = agent[field];
+    if (!declared) return acc;
+    const nameList = Array.isArray(declared) ? declared : Object.keys(declared);
+    if (nameList.length === 0) return acc;
+    const files = readComponentFiles(agentDir, dir, nameList);
+    if (files.length > 0) acc.push({ label, files });
+    return acc;
+  }, []);
+
+  return { agent, readmeHtml, components };
 }
 
 function renderComponentLabels(plugin) {
@@ -136,6 +168,15 @@ function layout(title, body) {
     .error-page { text-align: center; padding: 4rem 2rem; }
     .error-page h2 { font-size: 2rem; color: #ef4444; margin-bottom: 1rem; }
     .error-page p { color: #6b7280; margin-bottom: 1.5rem; }
+    .detail-components { margin-top: 2rem; }
+    .component-group { margin-bottom: 1.5rem; }
+    .component-group-title { font-size: 0.75rem; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.75px; margin-bottom: 0.5rem; }
+    .component-accordion { background: white; border: 1px solid #eaecf0; border-radius: 8px; margin-bottom: 0.5rem; overflow: hidden; }
+    .component-summary { padding: 0.875rem 1rem; cursor: pointer; font-weight: 500; color: #16213e; display: flex; align-items: center; gap: 0.5rem; list-style: none; user-select: none; }
+    .component-summary::-webkit-details-marker { display: none; }
+    .component-summary::before { content: '▶'; font-size: 0.6em; color: #9ca3af; transition: transform 0.15s; flex-shrink: 0; }
+    details[open] > .component-summary::before { transform: rotate(90deg); }
+    .component-content { padding: 1.5rem; border-top: 1px solid #eaecf0; }
   </style>
 </head>
 <body hx-boost="true">
@@ -195,7 +236,20 @@ function renderListPage(agents, categories) {
   return layout('Claude Marketplace Browser', body);
 }
 
-function renderDetailPage(agent, readmeHtml) {
+function renderDetailPage(agent, readmeHtml, components) {
+  const componentsHtml = components && components.length > 0 ? `
+    <div class="detail-components">
+      ${components.map(group => `
+        <div class="component-group">
+          <h3 class="component-group-title">${escapeHtml(group.label)}</h3>
+          ${group.files.map(file => `
+            <details class="component-accordion" open>
+              <summary class="component-summary">${escapeHtml(file.name)}</summary>
+              <div class="component-content detail-readme">${marked(file.content)}</div>
+            </details>`).join('')}
+        </div>`).join('')}
+    </div>` : '';
+
   const body = `
     <a class="back-link" href="/">← Retour à la liste</a>
     <div class="detail-header">
@@ -207,7 +261,8 @@ function renderDetailPage(agent, readmeHtml) {
       </div>
       ${agent.description ? `<p class="detail-description">${escapeHtml(agent.description)}</p>` : ''}
     </div>
-    ${readmeHtml ? `<div class="detail-readme">${readmeHtml}</div>` : ''}`;
+    ${readmeHtml ? `<div class="detail-readme">${readmeHtml}</div>` : ''}
+    ${componentsHtml}`;
 
   return layout(agent.name, body);
 }
@@ -256,7 +311,7 @@ const server = http.createServer((req, res) => {
       return;
     }
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(renderDetailPage(result.agent, result.readmeHtml));
+    res.end(renderDetailPage(result.agent, result.readmeHtml, result.components));
     return;
   }
 
