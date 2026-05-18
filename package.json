@@ -1,6 +1,6 @@
 {
   "name": "claude-marketplace-browser",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "Browser web pour explorer les plugins d'un marketplace Claude",
   "main": "server.js",
   "bin": {
