@@ -23,6 +23,24 @@ const { MARKETPLACE_PATH, MARKETPLACE_URL } = require('../browser.config');
 const DIST_DIR = path.join(process.cwd(), 'dist');
 const PUBLIC_DIR = path.join(__dirname, '..', 'public');
 
+// Rewrite absolute paths for root index.html (dist/index.html)
+function rewriteForIndex(html) {
+  return html
+    .replace(/href="\/styles\.css"/g, 'href="styles.css"')
+    .replace(/src="\/search\.js"/g, 'src="search.js"')
+    .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="agents/${name}/index.html"`)
+    .replace(/href="\/(?:\?[^"]*)?"/g, 'href="index.html"');
+}
+
+// Rewrite absolute paths for agent detail pages (dist/agents/{name}/index.html)
+function rewriteForAgent(html) {
+  return html
+    .replace(/href="\/styles\.css"/g, 'href="../../styles.css"')
+    .replace(/src="\/search\.js"/g, 'src="../../search.js"')
+    .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="../../agents/${name}/index.html"`)
+    .replace(/href="\/(?:\?[^"]*)?"/g, 'href="../../index.html"');
+}
+
 function build() {
   const agents = readAgents();
   const categories = [...new Set(agents.map(a => a.category).filter(Boolean))].sort();
@@ -31,7 +49,7 @@ function build() {
   fs.mkdirSync(DIST_DIR, { recursive: true });
   fs.mkdirSync(path.join(DIST_DIR, 'agents'), { recursive: true });
 
-  const indexHtml = renderListPage(agents, categories, '', MARKETPLACE_URL);
+  const indexHtml = rewriteForIndex(renderListPage(agents, categories, '', MARKETPLACE_URL));
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), indexHtml);
   console.log('  dist/index.html');
 
@@ -41,7 +59,7 @@ function build() {
     const slug = encodeURIComponent(agent.name);
     const agentDir = path.join(DIST_DIR, 'agents', slug);
     fs.mkdirSync(agentDir, { recursive: true });
-    const html = renderDetailPage(result.agent, result.readmeHtml, result.components, marketplaceName);
+    const html = rewriteForAgent(renderDetailPage(result.agent, result.readmeHtml, result.components, marketplaceName));
     fs.writeFileSync(path.join(agentDir, 'index.html'), html);
     console.log(`  dist/agents/${slug}/index.html`);
   }
