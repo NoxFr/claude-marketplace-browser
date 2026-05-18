@@ -37,3 +37,6 @@
 - [x] 6.1 Translate all UI strings to English: page-list.js (hero, search placeholder, empty states, category select), page-detail.js (back link, metadata labels, section titles), layout.js (nav labels, footer), server.js (error pages)
 - [x] 6.2 Add functional nav links: Agents → /?type=agents, MCP Servers → /?type=mcpServers, Docs/GitHub → GitHub repo; type filtering support in server + data layer; active nav state per route
 - [x] 6.3 Rebuild static and verify
+- [x] 6.4 Fix nav duplication: hide header nav on lg+ (sidebar takes over)
+- [x] 6.5 Rename branding: "Registry" → "Claude Marketplace Browser"
+- [x] 6.6 Align header logo with main content left edge (spacer div matching sidebar width)
