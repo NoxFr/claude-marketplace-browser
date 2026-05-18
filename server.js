@@ -2,10 +2,11 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { readAgents, readAgentDetail, filterByType } = require('./lib/data');
+const { readAgents, readAgentDetail, filterByType, readMarketplaceMeta } = require('./lib/data');
 const { escapeHtml, layout, renderGrid, renderListPage, renderDetailPage } = require('./lib/render');
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+const { MARKETPLACE_URL } = require('./browser.config');
 
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
@@ -17,7 +18,7 @@ const server = http.createServer((req, res) => {
     if (type) agents = filterByType(agents, type);
     const categories = [...new Set(agents.map(a => a.category).filter(Boolean))].sort();
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(renderListPage(agents, categories, type));
+    res.end(renderListPage(agents, categories, type, MARKETPLACE_URL));
     return;
   }
 
@@ -56,8 +57,9 @@ const server = http.createServer((req, res) => {
         </div>`));
       return;
     }
+    const { name: marketplaceName } = readMarketplaceMeta();
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.end(renderDetailPage(result.agent, result.readmeHtml, result.components));
+    res.end(renderDetailPage(result.agent, result.readmeHtml, result.components, marketplaceName));
     return;
   }
 

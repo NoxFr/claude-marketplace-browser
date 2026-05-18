@@ -26,6 +26,8 @@ The browser reads a `marketplace.json` file from a local directory and serves a 
 - Searchable and filterable plugin gallery (by name, description, category)
 - Plugin detail pages with rendered README and per-component documentation
 - Support for all Claude plugin component types: skills, commands, agents, hooks, MCP servers, LSP servers
+- **One-click install**: each plugin detail page shows the exact `claude plugin install` command, copied to clipboard on click
+- **Add marketplace banner**: the list page shows the `claude plugin marketplace add` command to register this marketplace in Claude Code
 - Color-coded badges per component type
 - Markdown rendering for plugin and component documentation (with syntax-highlighted code blocks)
 - Static snapshot export for hosting on GitLab/GitHub Pages
@@ -57,13 +59,35 @@ Point it to another directory via CLI argument or environment variable:
 
 ```bash
 # CLI argument
-node server.js --marketplace /path/to/marketplace
+node server.js --marketplace-path /path/to/marketplace
 
 # Environment variable
 MARKETPLACE_PATH=/path/to/marketplace npm start
 ```
 
 The target directory must contain a `.claude-plugin/marketplace.json` file.
+
+### Marketplace URL (for install commands)
+
+To display the correct `claude plugin marketplace add <source>` command on the list page, configure the URL or path of your marketplace repository:
+
+```bash
+# CLI argument
+node server.js --marketplace-path /path/to/marketplace --marketplace-url https://github.com/myorg/my-plugins
+
+# Environment variable
+MARKETPLACE_URL=https://github.com/myorg/my-plugins npm start
+```
+
+Without this option, the banner shows a `<path-or-url>` placeholder.
+
+The **Install Plugin** button on each detail page generates the command:
+
+```
+claude plugin install <plugin-name>@<marketplace-slug>
+```
+
+where `<marketplace-slug>` is derived from the `name` field in `marketplace.json` (e.g. `"My Marketplace"` → `my-marketplace`).
 
 ## Marketplace Format
 
