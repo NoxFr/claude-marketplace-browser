@@ -79,6 +79,10 @@ class SearchController {
     }
 
     this._apply();
+
+    if (this.searchInput && new URLSearchParams(window.location.search).get('type')) {
+      this.searchInput.focus();
+    }
   }
 
   _apply() {
