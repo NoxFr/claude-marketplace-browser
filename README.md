@@ -2,7 +2,7 @@
 
 A lightweight web UI for browsing Claude plugin marketplaces. Displays plugins, their components (skills, agents, MCP servers, hooks, etc.), and renders their documentation in a clean interface.
 
-[![GitLab Pages](https://img.shields.io/badge/Live%20Demo-GitLab%20Pages-orange)](https://liksi.gitlab.io/claude-marketplace-browser)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue)](https://noxfr.github.io/claude-marketplace-browser)
 
 ## Overview
 

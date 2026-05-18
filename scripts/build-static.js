@@ -12,7 +12,7 @@ const MARKETPLACE_PATH = process.env.MARKETPLACE_PATH || path.join(__dirname, '.
 const DEMO_BANNER = `
 <div style="background:#f59e0b;color:#1a1a2e;text-align:center;padding:0.6rem 1rem;font-size:0.875rem;font-weight:500;">
   Static demo — search and navigation require the
-  <a href="https://gitlab.com/liksi/claude-marketplace-browser" style="color:#1a1a2e;font-weight:700;">local server</a>.
+  <a href="https://github.com/NoxFr/claude-marketplace-browser" style="color:#1a1a2e;font-weight:700;">local server</a>.
 </div>`;
 
 function fetch(urlPath) {

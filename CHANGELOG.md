@@ -11,7 +11,7 @@ Versions follow [Semantic Versioning](https://semver.org/).
 
 ### Added
 - English README, LICENSE (MIT), CONTRIBUTING guide, and this CHANGELOG
-- GitLab Pages deployment via `.gitlab-ci.yml`
+- GitHub Pages deployment via `.github/workflows/pages.yml`
 - Static site build script (`scripts/build-static.js`) for generating a self-contained HTML demo
 
 ## [1.0.0] - 2025-05-01

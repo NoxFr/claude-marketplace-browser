@@ -9,7 +9,7 @@ This document describes how AI agents (Claude Code) should work with this reposi
 Key files:
 - `server.js` — HTTP server, HTML rendering, plugin reading
 - `browser.config.js` — marketplace path resolution (CLI arg / env var)
-- `scripts/build-static.js` — generates a self-contained static site for GitLab Pages
+- `scripts/build-static.js` — generates a self-contained static site for GitHub Pages
 - `example/` — example marketplace used for development and the live demo
 - `openspec/` — change proposals, specs, and tasks (see workflow below)
 

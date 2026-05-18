@@ -46,7 +46,7 @@ This project uses [OpenSpec](https://openspec.dev) to define and track changes b
    ```
    Or use the `/opsx:propose` skill in Claude Code for AI-assisted proposal generation.
 
-2. **Discuss**: open a GitLab issue linking to your `openspec/changes/<name>/` directory for early feedback.
+2. **Discuss**: open a GitHub issue linking to your `openspec/changes/<name>/` directory for early feedback.
 
 3. **Implement**: work through `tasks.md` and mark tasks complete as you go.
 
@@ -74,7 +74,7 @@ docs: update configuration examples
 
 ## Reporting Issues
 
-Open a GitLab issue with:
+Open a GitHub issue with:
 - A clear description of the problem
 - Steps to reproduce
 - Expected vs actual behavior

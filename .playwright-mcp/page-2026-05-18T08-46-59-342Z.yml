@@ -1,0 +1,19 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Claude Marketplace Browser" [level=1] [ref=e3]
+    - paragraph [ref=e4]: Explorez et découvrez les plugins disponibles
+  - main [ref=e5]:
+    - link "← Retour à la liste" [ref=e6] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e7]:
+      - generic [ref=e8]: java-backend
+      - generic [ref=e9]:
+        - generic [ref=e10]: Version 1.2.0
+        - generic [ref=e11]: "Catégorie : Development"
+        - generic [ref=e13]: Skill
+      - paragraph [ref=e14]: Développement Java/Spring Boot selon les préconisations DDD hexagonal, Spring Boot 4, Java 25. Détecte automatiquement le type de projet et charge les spécificités correspondantes.
+    - generic [ref=e16]:
+      - heading "Skills" [level=3] [ref=e17]
+      - group [ref=e18]:
+        - generic "▶ java-backend" [ref=e19] [cursor=pointer]
+  - contentinfo [ref=e20]: Made with ❤️ by Mathieu Durand

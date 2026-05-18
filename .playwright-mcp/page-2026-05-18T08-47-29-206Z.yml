@@ -1,0 +1,47 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Claude Marketplace Browser" [level=1] [ref=e3]
+    - paragraph [ref=e4]: Explorez et découvrez les plugins disponibles
+  - main [ref=e5]:
+    - link "← Retour à la liste" [ref=e6] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e7]:
+      - generic [ref=e8]: java-backend
+      - generic [ref=e9]:
+        - generic [ref=e10]: Version 1.2.0
+        - generic [ref=e11]: "Catégorie : Development"
+        - generic [ref=e13]: Skill
+      - paragraph [ref=e14]: Développement Java/Spring Boot selon les préconisations DDD hexagonal, Spring Boot 4, Java 25. Détecte automatiquement le type de projet et charge les spécificités correspondantes.
+    - generic [ref=e16]:
+      - heading "Skills" [level=3] [ref=e17]
+      - group [ref=e18]:
+        - generic "▶ java-backend" [active] [ref=e19] [cursor=pointer]
+        - generic [ref=e21]:
+          - heading "java-backend" [level=1] [ref=e22]
+          - paragraph [ref=e23]: Développement Java/Spring Boot selon les préconisations Additi (DDD hexagonal, Spring Boot 4, Java 25).
+          - heading "Usage" [level=2] [ref=e24]
+          - paragraph [ref=e25]: Ce skill détecte automatiquement le type de projet (API Web ou Worker) et charge les spécificités correspondantes.
+          - code [ref=e27]: /java-backend <description de la tâche>
+          - heading "Principes appliqués" [level=2] [ref=e28]
+          - list [ref=e29]:
+            - listitem [ref=e30]:
+              - strong [ref=e31]: Architecture hexagonale
+              - text: ": séparation stricte domain / application / infrastructure"
+            - listitem [ref=e32]:
+              - strong [ref=e33]: DDD
+              - text: ": agrégats, value objects, domain events"
+            - listitem [ref=e34]:
+              - strong [ref=e35]: Spring Boot 4
+              - text: ": configuration par convention, actuator, observability"
+            - listitem [ref=e36]:
+              - strong [ref=e37]: Java 25
+              - text: ": records, sealed classes, pattern matching"
+          - heading "Structure de projet attendue" [level=2] [ref=e38]
+          - code [ref=e40]: "src/ main/ java/ com.example/ domain/ # Entités, value objects, ports application/ # Use cases, command handlers infrastructure/ # Adapters, repositories, config test/ java/ com.example/ domain/ # Tests unitaires du domaine application/ # Tests d'intégration use cases"
+          - heading "Conventions" [level=2] [ref=e41]
+          - list [ref=e42]:
+            - listitem [ref=e43]: Les ports sont des interfaces dans le domaine
+            - listitem [ref=e44]: Les adapters implémentent les ports dans l'infrastructure
+            - listitem [ref=e45]: Les use cases ne dépendent que du domaine
+            - listitem [ref=e46]: Tests unitaires sans Spring context pour le domaine
+  - contentinfo [ref=e20]: Made with ❤️ by Mathieu Durand

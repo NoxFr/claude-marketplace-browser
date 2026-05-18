@@ -21,5 +21,5 @@
 ## 4. Verification
 
 - [x] 4.1 Run `node scripts/build-static.js` locally and confirm `public/index.html` renders correctly in a browser
-- [ ] 4.2 Push to a feature branch, confirm the CI pipeline passes and Pages URL is accessible
-- [ ] 4.3 Verify README, CONTRIBUTING, and CHANGELOG render correctly on the GitLab project page
+- [x] 4.2 Push to a feature branch, confirm the CI pipeline passes and Pages URL is accessible
+- [x] 4.3 Verify README, CONTRIBUTING, and CHANGELOG render correctly on the GitLab project page

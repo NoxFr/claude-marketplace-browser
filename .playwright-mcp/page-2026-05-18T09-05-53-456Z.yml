@@ -1,0 +1,762 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - heading "Claude Marketplace Browser" [level=1] [ref=e3]
+    - paragraph [ref=e4]: Explorez et découvrez les plugins disponibles
+  - main [ref=e5]:
+    - link "← Retour à la liste" [ref=e6] [cursor=pointer]:
+      - /url: /
+    - generic [ref=e7]:
+      - generic [ref=e8]: dsi-php
+      - generic [ref=e9]:
+        - generic [ref=e10]: Version 1.0.0
+        - generic [ref=e12]: Skill
+      - paragraph [ref=e13]: Conventions PHP/Symfony DSI (DDD, SOLID, API Platform)
+    - generic [ref=e14]:
+      - separator [ref=e15]
+      - 'heading "name: dsi-php description: Conventions et bonnes pratiques PHP/Symfony pour les projets DSI Additi (DDD, SOLID, API Platform). Ce skill doit être utilisé pour tout développement PHP sur les projets de la DSI afin de garantir la cohérence architecturale et le respect des standards internes." [level=2] [ref=e16]'
+      - heading "Skill DSI - Projets PHP" [level=1] [ref=e17]
+      - paragraph [ref=e18]: Bonnes pratiques et conventions pour les projets PHP de la DSI Additi.
+      - heading "Principes de conception" [level=2] [ref=e19]
+      - paragraph [ref=e20]:
+        - text: Tous les développements doivent respecter les principes fondamentaux suivants (voir
+        - code [ref=e21]: references/principes-conception.md
+        - text: "pour les détails et exemples) :"
+      - heading "SOLID" [level=3] [ref=e22]
+      - table [ref=e23]:
+        - rowgroup [ref=e24]:
+          - row "Principe Description" [ref=e25]:
+            - columnheader "Principe" [ref=e26]
+            - columnheader "Description" [ref=e27]
+        - rowgroup [ref=e28]:
+          - row "Single Responsibility Une classe = une seule raison de changer" [ref=e29]:
+            - cell "Single Responsibility" [ref=e30]:
+              - strong [ref=e31]: S
+              - text: ingle Responsibility
+            - cell "Une classe = une seule raison de changer" [ref=e32]
+          - row "Open/Closed Ouvert à l'extension, fermé à la modification" [ref=e33]:
+            - cell "Open/Closed" [ref=e34]:
+              - strong [ref=e35]: O
+              - text: pen/Closed
+            - cell "Ouvert à l'extension, fermé à la modification" [ref=e36]
+          - row "Liskov Substitution Les sous-types doivent être substituables" [ref=e37]:
+            - cell "Liskov Substitution" [ref=e38]:
+              - strong [ref=e39]: L
+              - text: iskov Substitution
+            - cell "Les sous-types doivent être substituables" [ref=e40]
+          - row "Interface Segregation Plusieurs petites interfaces > une grosse" [ref=e41]:
+            - cell "Interface Segregation" [ref=e42]:
+              - strong [ref=e43]: I
+              - text: nterface Segregation
+            - cell "Plusieurs petites interfaces > une grosse" [ref=e44]
+          - row "Dependency Inversion Dépendre des abstractions, pas des implémentations" [ref=e45]:
+            - cell "Dependency Inversion" [ref=e46]:
+              - strong [ref=e47]: D
+              - text: ependency Inversion
+            - cell "Dépendre des abstractions, pas des implémentations" [ref=e48]
+      - heading "Autres principes clés" [level=3] [ref=e49]
+      - table [ref=e50]:
+        - rowgroup [ref=e51]:
+          - row "Principe Application" [ref=e52]:
+            - columnheader "Principe" [ref=e53]
+            - columnheader "Application" [ref=e54]
+        - rowgroup [ref=e55]:
+          - row "DRY Centraliser la logique, éviter la duplication" [ref=e56]:
+            - cell "DRY" [ref=e57]:
+              - strong [ref=e58]: DRY
+            - cell "Centraliser la logique, éviter la duplication" [ref=e59]
+          - row "KISS Privilégier la simplicité, éviter la sur-ingénierie" [ref=e60]:
+            - cell "KISS" [ref=e61]:
+              - strong [ref=e62]: KISS
+            - cell "Privilégier la simplicité, éviter la sur-ingénierie" [ref=e63]
+          - row "YAGNI Ne pas implémenter ce qui n'est pas nécessaire maintenant" [ref=e64]:
+            - cell "YAGNI" [ref=e65]:
+              - strong [ref=e66]: YAGNI
+            - cell "Ne pas implémenter ce qui n'est pas nécessaire maintenant" [ref=e67]
+          - row "Composition > Héritage Préférer la composition pour la flexibilité" [ref=e68]:
+            - cell "Composition > Héritage" [ref=e69]:
+              - strong [ref=e70]: Composition > Héritage
+            - cell "Préférer la composition pour la flexibilité" [ref=e71]
+          - row "Fail Fast Échouer explicitement avec des exceptions claires" [ref=e72]:
+            - cell "Fail Fast" [ref=e73]:
+              - strong [ref=e74]: Fail Fast
+            - cell "Échouer explicitement avec des exceptions claires" [ref=e75]
+          - row "Tell Don't Ask Commander les objets plutôt qu'interroger leur état" [ref=e76]:
+            - cell "Tell Don't Ask" [ref=e77]:
+              - strong [ref=e78]: Tell Don't Ask
+            - cell "Commander les objets plutôt qu'interroger leur état" [ref=e79]
+          - row "Law of Demeter Ne parler qu'à ses dépendances directes" [ref=e80]:
+            - cell "Law of Demeter" [ref=e81]:
+              - strong [ref=e82]: Law of Demeter
+            - cell "Ne parler qu'à ses dépendances directes" [ref=e83]
+      - heading "Stack technique" [level=2] [ref=e84]
+      - table [ref=e85]:
+        - rowgroup [ref=e86]:
+          - row "Composant Version Usage" [ref=e87]:
+            - columnheader "Composant" [ref=e88]
+            - columnheader "Version" [ref=e89]
+            - columnheader "Usage" [ref=e90]
+        - rowgroup [ref=e91]:
+          - row "PHP 8.3+ Backend" [ref=e92]:
+            - cell "PHP" [ref=e93]
+            - cell "8.3+" [ref=e94]
+            - cell "Backend" [ref=e95]
+          - row "Symfony 7.x Framework" [ref=e96]:
+            - cell "Symfony" [ref=e97]
+            - cell "7.x" [ref=e98]
+            - cell "Framework" [ref=e99]
+          - row "API Platform 4.x API REST" [ref=e100]:
+            - cell "API Platform" [ref=e101]
+            - cell "4.x" [ref=e102]
+            - cell "API REST" [ref=e103]
+          - row "Doctrine ORM 3.x Persistence" [ref=e104]:
+            - cell "Doctrine ORM" [ref=e105]
+            - cell "3.x" [ref=e106]
+            - cell "Persistence" [ref=e107]
+          - row "PostgreSQL 17+ Base de données (avec PostGIS)" [ref=e108]:
+            - cell "PostgreSQL" [ref=e109]
+            - cell "17+" [ref=e110]
+            - cell "Base de données (avec PostGIS)" [ref=e111]
+          - row "Nuxt 4.x Frontend (Vue 3 + TypeScript)" [ref=e112]:
+            - cell "Nuxt" [ref=e113]
+            - cell "4.x" [ref=e114]
+            - cell "Frontend (Vue 3 + TypeScript)" [ref=e115]
+      - heading "Architecture DDD" [level=2] [ref=e116]
+      - paragraph [ref=e117]: "Tous les projets PHP suivent une architecture Domain-Driven Design en 3 couches :"
+      - code [ref=e119]: "src/ ├── Domain/ # Métier pur, aucune dépendance technique │ ├── Entity/ # Entités Doctrine │ ├── Model/ # Modèles métier │ ├── Repository/ # Interfaces des repositories │ ├── Service/ # Services métier │ ├── Enum/ # Enums PHP natifs │ ├── Event/ # Événements domaine │ ├── Message/ # Messages Messenger │ └── Exception/ # Exceptions personnalisées │ ├── Application/ # Orchestration │ ├── Dto/ # Data Transfer Objects (#[ApiResource]) │ ├── State/ # State Providers & Processors │ ├── Service/ # Services applicatifs │ ├── Validator/ # Contraintes de validation │ └── EventListener/ │ └── Infrastructure/ # Implémentations techniques ├── Doctrine/ # Repositories Doctrine, Migrations └── [Intégrations externes]/"
+      - heading "Règles de dépendances" [level=3] [ref=e120]
+      - table [ref=e121]:
+        - rowgroup [ref=e122]:
+          - row "Couche Peut importer" [ref=e123]:
+            - columnheader "Couche" [ref=e124]
+            - columnheader "Peut importer" [ref=e125]
+        - rowgroup [ref=e126]:
+          - row "Domain Rien (autonome)" [ref=e127]:
+            - cell "Domain" [ref=e128]
+            - cell "Rien (autonome)" [ref=e129]
+          - row "Application Domain uniquement" [ref=e130]:
+            - cell "Application" [ref=e131]
+            - cell "Domain uniquement" [ref=e132]
+          - row "Infrastructure Domain et Application" [ref=e133]:
+            - cell "Infrastructure" [ref=e134]
+            - cell "Domain et Application" [ref=e135]
+      - heading "Conventions de code PHP" [level=2] [ref=e136]
+      - heading "Structure d'un fichier PHP" [level=3] [ref=e137]
+      - code [ref=e139]: "<?php declare(strict_types=1); namespace Additi\\{Projet}\\{Layer}\\{SubNamespace}; use ...; // Imports triés par ordre alphabétique readonly class MonService // Préférer readonly pour les services { public function __construct( private MonRepository $repository, ) {} }"
+      - heading "Classes readonly" [level=3] [ref=e140]
+      - paragraph [ref=e141]:
+        - text: Privilégier les classes
+        - code [ref=e142]: readonly
+        - text: "pour les services sans état :"
+      - code [ref=e144]: "readonly class MonStateProvider implements ProviderInterface { public function __construct( private MonRepository $repository, ) {} }"
+      - heading "DTOs avec API Platform" [level=3] [ref=e145]
+      - code [ref=e147]: "#[ApiResource( operations: [ new GetCollection( uriTemplate: '/ressources', provider: RessourceStateProvider::class, ), new Post( uriTemplate: '/ressources', processor: RessourceStateProcessor::class, ), ], routePrefix: 'api', )] class RessourceDto { public function __construct( public Uuid $id, public string $nom, public ?string $description = null, ) {} }"
+      - heading "Repository Pattern" [level=3] [ref=e148]
+      - code [ref=e150]: "// Domain : Interface interface MonRepository { public function find(Uuid $id): ?MonEntity; public function enregistrer(MonEntity $entity): void; } // Infrastructure : Implémentation Doctrine readonly class DoctrineMonRepository implements MonRepository { public function __construct( private EntityManagerInterface $em, ) {} public function find(Uuid $id): ?MonEntity { return $this->em->find(MonEntity::class, $id); } public function enregistrer(MonEntity $entity): void { $this->em->persist($entity); $this->em->flush(); } }"
+      - heading "Entités Doctrine" [level=3] [ref=e151]
+      - code [ref=e153]: "#[ORM\\Entity] #[ORM\\Table(name: 'mon_entite')] class MonEntite { #[ORM\\Id] #[ORM\\Column(type: 'uuid')] #[ORM\\GeneratedValue(strategy: 'CUSTOM')] #[ORM\\CustomIdGenerator(class: 'doctrine.uuid_generator')] private Uuid $id; #[ORM\\Column(length: 255)] private string $nom; }"
+      - heading "Outils de qualité" [level=2] [ref=e154]
+      - heading "PHPStan (niveau 9)" [level=3] [ref=e155]
+      - paragraph [ref=e156]:
+        - text: Configuration standard (
+        - code [ref=e157]: phpstan.neon
+        - text: ") :"
+      - code [ref=e159]: "parameters: phpVersion: 80300 level: 9 paths: - src - tests"
+      - paragraph [ref=e160]:
+        - text: "Commande :"
+        - code [ref=e161]: make phpstan
+        - text: ou
+        - code [ref=e162]: vendor/bin/phpstan analyse
+      - heading "PHP CS Fixer" [level=3] [ref=e163]
+      - paragraph [ref=e164]: "Standards appliqués :"
+      - list [ref=e165]:
+        - listitem [ref=e166]: PSR-1, PSR-2, PSR-12
+        - listitem [ref=e167]: "@PhpCsFixer et @PhpCsFixer:risky"
+        - listitem [ref=e168]: "@PHP82Migration"
+        - listitem [ref=e169]: Yoda style activé
+        - listitem [ref=e170]: Imports triés alphabétiquement
+      - paragraph [ref=e171]:
+        - text: "Commande :"
+        - code [ref=e172]: make cs-fix
+        - text: ou
+        - code [ref=e173]: vendor/bin/php-cs-fixer fix
+      - heading "Rector" [level=3] [ref=e174]
+      - paragraph [ref=e175]: "Utilisé pour les migrations de version Symfony :"
+      - code [ref=e177]: return RectorConfig::configure() ->withSets([ SymfonySetList::SYMFONY_73, SymfonySetList::SYMFONY_CODE_QUALITY, SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION, ]);
+      - heading "Git et Conventional Commits" [level=2] [ref=e178]
+      - heading "Format des commits" [level=3] [ref=e179]
+      - code [ref=e181]: "{type}([scope]): {message en français avec verbe}"
+      - paragraph [ref=e182]: "Exemples :"
+      - list [ref=e183]:
+        - listitem [ref=e184]:
+          - code [ref=e185]: "feat(api): Ajouter l'endpoint de création de commande"
+        - listitem [ref=e186]:
+          - code [ref=e187]: "fix(front): Corriger l'affichage du formulaire"
+        - listitem [ref=e188]:
+          - code [ref=e189]: "refactor(api): Extraire la logique de validation"
+      - heading "Types de commits" [level=3] [ref=e190]
+      - table [ref=e191]:
+        - rowgroup [ref=e192]:
+          - row "Type Description" [ref=e193]:
+            - columnheader "Type" [ref=e194]
+            - columnheader "Description" [ref=e195]
+        - rowgroup [ref=e196]:
+          - row "feat Nouvelle fonctionnalité" [ref=e197]:
+            - cell "feat" [ref=e198]:
+              - code [ref=e199]: feat
+            - cell "Nouvelle fonctionnalité" [ref=e200]
+          - row "fix Correction de bug" [ref=e201]:
+            - cell "fix" [ref=e202]:
+              - code [ref=e203]: fix
+            - cell "Correction de bug" [ref=e204]
+          - row "refactor Refactorisation" [ref=e205]:
+            - cell "refactor" [ref=e206]:
+              - code [ref=e207]: refactor
+            - cell "Refactorisation" [ref=e208]
+          - row "perf Amélioration de performance" [ref=e209]:
+            - cell "perf" [ref=e210]:
+              - code [ref=e211]: perf
+            - cell "Amélioration de performance" [ref=e212]
+          - row "test Ajout/modification de tests" [ref=e213]:
+            - cell "test" [ref=e214]:
+              - code [ref=e215]: test
+            - cell "Ajout/modification de tests" [ref=e216]
+          - row "doc Documentation" [ref=e217]:
+            - cell "doc" [ref=e218]:
+              - code [ref=e219]: doc
+            - cell "Documentation" [ref=e220]
+          - row "style Formatage (sans impact fonctionnel)" [ref=e221]:
+            - cell "style" [ref=e222]:
+              - code [ref=e223]: style
+            - cell "Formatage (sans impact fonctionnel)" [ref=e224]
+          - row "build Build, dépendances" [ref=e225]:
+            - cell "build" [ref=e226]:
+              - code [ref=e227]: build
+            - cell "Build, dépendances" [ref=e228]
+          - row "ci CI/CD" [ref=e229]:
+            - cell "ci" [ref=e230]:
+              - code [ref=e231]: ci
+            - cell "CI/CD" [ref=e232]
+          - row "chore Autres tâches" [ref=e233]:
+            - cell "chore" [ref=e234]:
+              - code [ref=e235]: chore
+            - cell "Autres tâches" [ref=e236]
+      - heading "Scopes courants" [level=3] [ref=e237]
+      - table [ref=e238]:
+        - rowgroup [ref=e239]:
+          - row "Scope Description" [ref=e240]:
+            - columnheader "Scope" [ref=e241]
+            - columnheader "Description" [ref=e242]
+        - rowgroup [ref=e243]:
+          - row "api Backend PHP" [ref=e244]:
+            - cell "api" [ref=e245]:
+              - code [ref=e246]: api
+            - cell "Backend PHP" [ref=e247]
+          - row "front Frontend Nuxt/Vue" [ref=e248]:
+            - cell "front" [ref=e249]:
+              - code [ref=e250]: front
+            - cell "Frontend Nuxt/Vue" [ref=e251]
+          - row "e2e Tests E2E" [ref=e252]:
+            - cell "e2e" [ref=e253]:
+              - code [ref=e254]: e2e
+            - cell "Tests E2E" [ref=e255]
+          - row "release Release" [ref=e256]:
+            - cell "release" [ref=e257]:
+              - code [ref=e258]: release
+            - cell "Release" [ref=e259]
+      - heading "Format des branches" [level=3] [ref=e260]
+      - code [ref=e262]: "{type}/{TICKET-ID}-{description}"
+      - paragraph [ref=e263]:
+        - text: "Exemple :"
+        - code [ref=e264]: feat/TGD-123-ajout-formulaire-contact
+      - heading "Tests" [level=2] [ref=e265]
+      - heading "Structure" [level=3] [ref=e266]
+      - code [ref=e268]: "tests/ ├── unit/ # Tests unitaires (PHPUnit) ├── functional/ # Tests fonctionnels └── bootstrap.php"
+      - heading "Conventions" [level=3] [ref=e269]
+      - list [ref=e270]:
+        - listitem [ref=e271]:
+          - text: Utiliser les mocks/stubs dans
+          - code [ref=e272]: Infrastructure/InMemory/
+        - listitem [ref=e273]: Un test par comportement
+        - listitem [ref=e274]:
+          - text: "Nommer explicitement :"
+          - code [ref=e275]: testDoitRetournerUneErreurSiIdInvalide()
+      - heading "Makefile" [level=2] [ref=e276]
+      - paragraph [ref=e277]: "Commandes standards disponibles :"
+      - table [ref=e278]:
+        - rowgroup [ref=e279]:
+          - row "Commande Description" [ref=e280]:
+            - columnheader "Commande" [ref=e281]
+            - columnheader "Description" [ref=e282]
+        - rowgroup [ref=e283]:
+          - row "make up Démarrer l'environnement" [ref=e284]:
+            - cell "make up" [ref=e285]:
+              - code [ref=e286]: make up
+            - cell "Démarrer l'environnement" [ref=e287]
+          - row "make down Stopper l'environnement" [ref=e288]:
+            - cell "make down" [ref=e289]:
+              - code [ref=e290]: make down
+            - cell "Stopper l'environnement" [ref=e291]
+          - row "make api Shell dans le container API" [ref=e292]:
+            - cell "make api" [ref=e293]:
+              - code [ref=e294]: make api
+            - cell "Shell dans le container API" [ref=e295]
+          - row "make front Shell dans le container Front" [ref=e296]:
+            - cell "make front" [ref=e297]:
+              - code [ref=e298]: make front
+            - cell "Shell dans le container Front" [ref=e299]
+          - row "make phpstan Analyse statique" [ref=e300]:
+            - cell "make phpstan" [ref=e301]:
+              - code [ref=e302]: make phpstan
+            - cell "Analyse statique" [ref=e303]
+          - row "make cs-fix Corriger le style" [ref=e304]:
+            - cell "make cs-fix" [ref=e305]:
+              - code [ref=e306]: make cs-fix
+            - cell "Corriger le style" [ref=e307]
+          - row "make test Lancer les tests" [ref=e308]:
+            - cell "make test" [ref=e309]:
+              - code [ref=e310]: make test
+            - cell "Lancer les tests" [ref=e311]
+      - heading "Bundles internes Additi" [level=2] [ref=e312]
+      - table [ref=e313]:
+        - rowgroup [ref=e314]:
+          - row "Bundle Usage" [ref=e315]:
+            - columnheader "Bundle" [ref=e316]
+            - columnheader "Usage" [ref=e317]
+        - rowgroup [ref=e318]:
+          - row "additi/keycloak-bundle Authentification SSO" [ref=e319]:
+            - cell "additi/keycloak-bundle" [ref=e320]:
+              - code [ref=e321]: additi/keycloak-bundle
+            - cell "Authentification SSO" [ref=e322]
+          - row "additi/correlation-id-bundle Traçabilité des requêtes" [ref=e323]:
+            - cell "additi/correlation-id-bundle" [ref=e324]:
+              - code [ref=e325]: additi/correlation-id-bundle
+            - cell "Traçabilité des requêtes" [ref=e326]
+          - row "additi/salesforce-client-bundle Intégration CRM" [ref=e327]:
+            - cell "additi/salesforce-client-bundle" [ref=e328]:
+              - code [ref=e329]: additi/salesforce-client-bundle
+            - cell "Intégration CRM" [ref=e330]
+          - row "additi/directus-client-bundle Intégration CMS" [ref=e331]:
+            - cell "additi/directus-client-bundle" [ref=e332]:
+              - code [ref=e333]: additi/directus-client-bundle
+            - cell "Intégration CMS" [ref=e334]
+          - row "additi/php-qa Outils de qualité" [ref=e335]:
+            - cell "additi/php-qa" [ref=e336]:
+              - code [ref=e337]: additi/php-qa
+            - cell "Outils de qualité" [ref=e338]
+          - row "additi/php-tools Utilitaires communs" [ref=e339]:
+            - cell "additi/php-tools" [ref=e340]:
+              - code [ref=e341]: additi/php-tools
+            - cell "Utilitaires communs" [ref=e342]
+      - heading "Frontend Nuxt" [level=2] [ref=e343]
+      - heading "Stack" [level=3] [ref=e344]
+      - list [ref=e345]:
+        - listitem [ref=e346]: Nuxt 4 + Vue 3 + TypeScript
+        - listitem [ref=e347]: Pinia (state management)
+        - listitem [ref=e348]: TailwindCSS + @additi/tailwind-config
+        - listitem [ref=e349]: Vitest (tests)
+        - listitem [ref=e350]: Vue Query (TanStack)
+      - heading "Structure" [level=3] [ref=e351]
+      - code [ref=e353]: "sources/{projet}-front/ ├── components/ # Composants Vue ├── composables/ # Hooks réutilisables ├── pages/ # Routes Nuxt ├── stores/ # Stores Pinia ├── queries/ # Vue Query └── utils/ # Utilitaires"
+      - heading "CI/CD GitLab" [level=2] [ref=e354]
+      - paragraph [ref=e355]: "Pipeline standard avec :"
+      - list [ref=e356]:
+        - listitem [ref=e357]: Lint (Dockerfile, code)
+        - listitem [ref=e358]: Build (API + Front)
+        - listitem [ref=e359]: Tests (unitaires, fonctionnels)
+        - listitem [ref=e360]: Deploy (int1 → rec1 → preprod → prod)
+        - listitem [ref=e361]: Tests E2E
+      - paragraph [ref=e362]: "Environnements :"
+      - list [ref=e363]:
+        - listitem [ref=e364]:
+          - code [ref=e365]: int1
+          - text: ": branches feature"
+        - listitem [ref=e366]:
+          - code [ref=e367]: rec1
+          - text: ": main + MR"
+        - listitem [ref=e368]:
+          - code [ref=e369]: preprod
+          - text: ": tags RC ("
+          - code [ref=e370]: x.y.z-rcN
+          - text: )
+        - listitem [ref=e371]:
+          - code [ref=e372]: prod
+          - text: ": tags release ("
+          - code [ref=e373]: x.y.z
+          - text: )
+    - generic [ref=e375]:
+      - heading "Skills" [level=3] [ref=e376]
+      - group [ref=e377]:
+        - generic "▶ SKILL" [ref=e378] [cursor=pointer]
+        - generic [ref=e379]:
+          - separator [ref=e380]
+          - 'heading "name: dsi-php description: Conventions et bonnes pratiques PHP/Symfony pour les projets DSI Additi (DDD, SOLID, API Platform). Ce skill doit être utilisé pour tout développement PHP sur les projets de la DSI afin de garantir la cohérence architecturale et le respect des standards internes." [level=2] [ref=e381]'
+          - heading "Skill DSI - Projets PHP" [level=1] [ref=e382]
+          - paragraph [ref=e383]: Bonnes pratiques et conventions pour les projets PHP de la DSI Additi.
+          - heading "Principes de conception" [level=2] [ref=e384]
+          - paragraph [ref=e385]:
+            - text: Tous les développements doivent respecter les principes fondamentaux suivants (voir
+            - code [ref=e386]: references/principes-conception.md
+            - text: "pour les détails et exemples) :"
+          - heading "SOLID" [level=3] [ref=e387]
+          - table [ref=e388]:
+            - rowgroup [ref=e389]:
+              - row "Principe Description" [ref=e390]:
+                - columnheader "Principe" [ref=e391]
+                - columnheader "Description" [ref=e392]
+            - rowgroup [ref=e393]:
+              - row "Single Responsibility Une classe = une seule raison de changer" [ref=e394]:
+                - cell "Single Responsibility" [ref=e395]:
+                  - strong [ref=e396]: S
+                  - text: ingle Responsibility
+                - cell "Une classe = une seule raison de changer" [ref=e397]
+              - row "Open/Closed Ouvert à l'extension, fermé à la modification" [ref=e398]:
+                - cell "Open/Closed" [ref=e399]:
+                  - strong [ref=e400]: O
+                  - text: pen/Closed
+                - cell "Ouvert à l'extension, fermé à la modification" [ref=e401]
+              - row "Liskov Substitution Les sous-types doivent être substituables" [ref=e402]:
+                - cell "Liskov Substitution" [ref=e403]:
+                  - strong [ref=e404]: L
+                  - text: iskov Substitution
+                - cell "Les sous-types doivent être substituables" [ref=e405]
+              - row "Interface Segregation Plusieurs petites interfaces > une grosse" [ref=e406]:
+                - cell "Interface Segregation" [ref=e407]:
+                  - strong [ref=e408]: I
+                  - text: nterface Segregation
+                - cell "Plusieurs petites interfaces > une grosse" [ref=e409]
+              - row "Dependency Inversion Dépendre des abstractions, pas des implémentations" [ref=e410]:
+                - cell "Dependency Inversion" [ref=e411]:
+                  - strong [ref=e412]: D
+                  - text: ependency Inversion
+                - cell "Dépendre des abstractions, pas des implémentations" [ref=e413]
+          - heading "Autres principes clés" [level=3] [ref=e414]
+          - table [ref=e415]:
+            - rowgroup [ref=e416]:
+              - row "Principe Application" [ref=e417]:
+                - columnheader "Principe" [ref=e418]
+                - columnheader "Application" [ref=e419]
+            - rowgroup [ref=e420]:
+              - row "DRY Centraliser la logique, éviter la duplication" [ref=e421]:
+                - cell "DRY" [ref=e422]:
+                  - strong [ref=e423]: DRY
+                - cell "Centraliser la logique, éviter la duplication" [ref=e424]
+              - row "KISS Privilégier la simplicité, éviter la sur-ingénierie" [ref=e425]:
+                - cell "KISS" [ref=e426]:
+                  - strong [ref=e427]: KISS
+                - cell "Privilégier la simplicité, éviter la sur-ingénierie" [ref=e428]
+              - row "YAGNI Ne pas implémenter ce qui n'est pas nécessaire maintenant" [ref=e429]:
+                - cell "YAGNI" [ref=e430]:
+                  - strong [ref=e431]: YAGNI
+                - cell "Ne pas implémenter ce qui n'est pas nécessaire maintenant" [ref=e432]
+              - row "Composition > Héritage Préférer la composition pour la flexibilité" [ref=e433]:
+                - cell "Composition > Héritage" [ref=e434]:
+                  - strong [ref=e435]: Composition > Héritage
+                - cell "Préférer la composition pour la flexibilité" [ref=e436]
+              - row "Fail Fast Échouer explicitement avec des exceptions claires" [ref=e437]:
+                - cell "Fail Fast" [ref=e438]:
+                  - strong [ref=e439]: Fail Fast
+                - cell "Échouer explicitement avec des exceptions claires" [ref=e440]
+              - row "Tell Don't Ask Commander les objets plutôt qu'interroger leur état" [ref=e441]:
+                - cell "Tell Don't Ask" [ref=e442]:
+                  - strong [ref=e443]: Tell Don't Ask
+                - cell "Commander les objets plutôt qu'interroger leur état" [ref=e444]
+              - row "Law of Demeter Ne parler qu'à ses dépendances directes" [ref=e445]:
+                - cell "Law of Demeter" [ref=e446]:
+                  - strong [ref=e447]: Law of Demeter
+                - cell "Ne parler qu'à ses dépendances directes" [ref=e448]
+          - heading "Stack technique" [level=2] [ref=e449]
+          - table [ref=e450]:
+            - rowgroup [ref=e451]:
+              - row "Composant Version Usage" [ref=e452]:
+                - columnheader "Composant" [ref=e453]
+                - columnheader "Version" [ref=e454]
+                - columnheader "Usage" [ref=e455]
+            - rowgroup [ref=e456]:
+              - row "PHP 8.3+ Backend" [ref=e457]:
+                - cell "PHP" [ref=e458]
+                - cell "8.3+" [ref=e459]
+                - cell "Backend" [ref=e460]
+              - row "Symfony 7.x Framework" [ref=e461]:
+                - cell "Symfony" [ref=e462]
+                - cell "7.x" [ref=e463]
+                - cell "Framework" [ref=e464]
+              - row "API Platform 4.x API REST" [ref=e465]:
+                - cell "API Platform" [ref=e466]
+                - cell "4.x" [ref=e467]
+                - cell "API REST" [ref=e468]
+              - row "Doctrine ORM 3.x Persistence" [ref=e469]:
+                - cell "Doctrine ORM" [ref=e470]
+                - cell "3.x" [ref=e471]
+                - cell "Persistence" [ref=e472]
+              - row "PostgreSQL 17+ Base de données (avec PostGIS)" [ref=e473]:
+                - cell "PostgreSQL" [ref=e474]
+                - cell "17+" [ref=e475]
+                - cell "Base de données (avec PostGIS)" [ref=e476]
+              - row "Nuxt 4.x Frontend (Vue 3 + TypeScript)" [ref=e477]:
+                - cell "Nuxt" [ref=e478]
+                - cell "4.x" [ref=e479]
+                - cell "Frontend (Vue 3 + TypeScript)" [ref=e480]
+          - heading "Architecture DDD" [level=2] [ref=e481]
+          - paragraph [ref=e482]: "Tous les projets PHP suivent une architecture Domain-Driven Design en 3 couches :"
+          - code [ref=e484]: "src/ ├── Domain/ # Métier pur, aucune dépendance technique │ ├── Entity/ # Entités Doctrine │ ├── Model/ # Modèles métier │ ├── Repository/ # Interfaces des repositories │ ├── Service/ # Services métier │ ├── Enum/ # Enums PHP natifs │ ├── Event/ # Événements domaine │ ├── Message/ # Messages Messenger │ └── Exception/ # Exceptions personnalisées │ ├── Application/ # Orchestration │ ├── Dto/ # Data Transfer Objects (#[ApiResource]) │ ├── State/ # State Providers & Processors │ ├── Service/ # Services applicatifs │ ├── Validator/ # Contraintes de validation │ └── EventListener/ │ └── Infrastructure/ # Implémentations techniques ├── Doctrine/ # Repositories Doctrine, Migrations └── [Intégrations externes]/"
+          - heading "Règles de dépendances" [level=3] [ref=e485]
+          - table [ref=e486]:
+            - rowgroup [ref=e487]:
+              - row "Couche Peut importer" [ref=e488]:
+                - columnheader "Couche" [ref=e489]
+                - columnheader "Peut importer" [ref=e490]
+            - rowgroup [ref=e491]:
+              - row "Domain Rien (autonome)" [ref=e492]:
+                - cell "Domain" [ref=e493]
+                - cell "Rien (autonome)" [ref=e494]
+              - row "Application Domain uniquement" [ref=e495]:
+                - cell "Application" [ref=e496]
+                - cell "Domain uniquement" [ref=e497]
+              - row "Infrastructure Domain et Application" [ref=e498]:
+                - cell "Infrastructure" [ref=e499]
+                - cell "Domain et Application" [ref=e500]
+          - heading "Conventions de code PHP" [level=2] [ref=e501]
+          - heading "Structure d'un fichier PHP" [level=3] [ref=e502]
+          - code [ref=e504]: "<?php declare(strict_types=1); namespace Additi\\{Projet}\\{Layer}\\{SubNamespace}; use ...; // Imports triés par ordre alphabétique readonly class MonService // Préférer readonly pour les services { public function __construct( private MonRepository $repository, ) {} }"
+          - heading "Classes readonly" [level=3] [ref=e505]
+          - paragraph [ref=e506]:
+            - text: Privilégier les classes
+            - code [ref=e507]: readonly
+            - text: "pour les services sans état :"
+          - code [ref=e509]: "readonly class MonStateProvider implements ProviderInterface { public function __construct( private MonRepository $repository, ) {} }"
+          - heading "DTOs avec API Platform" [level=3] [ref=e510]
+          - code [ref=e512]: "#[ApiResource( operations: [ new GetCollection( uriTemplate: '/ressources', provider: RessourceStateProvider::class, ), new Post( uriTemplate: '/ressources', processor: RessourceStateProcessor::class, ), ], routePrefix: 'api', )] class RessourceDto { public function __construct( public Uuid $id, public string $nom, public ?string $description = null, ) {} }"
+          - heading "Repository Pattern" [level=3] [ref=e513]
+          - code [ref=e515]: "// Domain : Interface interface MonRepository { public function find(Uuid $id): ?MonEntity; public function enregistrer(MonEntity $entity): void; } // Infrastructure : Implémentation Doctrine readonly class DoctrineMonRepository implements MonRepository { public function __construct( private EntityManagerInterface $em, ) {} public function find(Uuid $id): ?MonEntity { return $this->em->find(MonEntity::class, $id); } public function enregistrer(MonEntity $entity): void { $this->em->persist($entity); $this->em->flush(); } }"
+          - heading "Entités Doctrine" [level=3] [ref=e516]
+          - code [ref=e518]: "#[ORM\\Entity] #[ORM\\Table(name: 'mon_entite')] class MonEntite { #[ORM\\Id] #[ORM\\Column(type: 'uuid')] #[ORM\\GeneratedValue(strategy: 'CUSTOM')] #[ORM\\CustomIdGenerator(class: 'doctrine.uuid_generator')] private Uuid $id; #[ORM\\Column(length: 255)] private string $nom; }"
+          - heading "Outils de qualité" [level=2] [ref=e519]
+          - heading "PHPStan (niveau 9)" [level=3] [ref=e520]
+          - paragraph [ref=e521]:
+            - text: Configuration standard (
+            - code [ref=e522]: phpstan.neon
+            - text: ") :"
+          - code [ref=e524]: "parameters: phpVersion: 80300 level: 9 paths: - src - tests"
+          - paragraph [ref=e525]:
+            - text: "Commande :"
+            - code [ref=e526]: make phpstan
+            - text: ou
+            - code [ref=e527]: vendor/bin/phpstan analyse
+          - heading "PHP CS Fixer" [level=3] [ref=e528]
+          - paragraph [ref=e529]: "Standards appliqués :"
+          - list [ref=e530]:
+            - listitem [ref=e531]: PSR-1, PSR-2, PSR-12
+            - listitem [ref=e532]: "@PhpCsFixer et @PhpCsFixer:risky"
+            - listitem [ref=e533]: "@PHP82Migration"
+            - listitem [ref=e534]: Yoda style activé
+            - listitem [ref=e535]: Imports triés alphabétiquement
+          - paragraph [ref=e536]:
+            - text: "Commande :"
+            - code [ref=e537]: make cs-fix
+            - text: ou
+            - code [ref=e538]: vendor/bin/php-cs-fixer fix
+          - heading "Rector" [level=3] [ref=e539]
+          - paragraph [ref=e540]: "Utilisé pour les migrations de version Symfony :"
+          - code [ref=e542]: return RectorConfig::configure() ->withSets([ SymfonySetList::SYMFONY_73, SymfonySetList::SYMFONY_CODE_QUALITY, SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION, ]);
+          - heading "Git et Conventional Commits" [level=2] [ref=e543]
+          - heading "Format des commits" [level=3] [ref=e544]
+          - code [ref=e546]: "{type}([scope]): {message en français avec verbe}"
+          - paragraph [ref=e547]: "Exemples :"
+          - list [ref=e548]:
+            - listitem [ref=e549]:
+              - code [ref=e550]: "feat(api): Ajouter l'endpoint de création de commande"
+            - listitem [ref=e551]:
+              - code [ref=e552]: "fix(front): Corriger l'affichage du formulaire"
+            - listitem [ref=e553]:
+              - code [ref=e554]: "refactor(api): Extraire la logique de validation"
+          - heading "Types de commits" [level=3] [ref=e555]
+          - table [ref=e556]:
+            - rowgroup [ref=e557]:
+              - row "Type Description" [ref=e558]:
+                - columnheader "Type" [ref=e559]
+                - columnheader "Description" [ref=e560]
+            - rowgroup [ref=e561]:
+              - row "feat Nouvelle fonctionnalité" [ref=e562]:
+                - cell "feat" [ref=e563]:
+                  - code [ref=e564]: feat
+                - cell "Nouvelle fonctionnalité" [ref=e565]
+              - row "fix Correction de bug" [ref=e566]:
+                - cell "fix" [ref=e567]:
+                  - code [ref=e568]: fix
+                - cell "Correction de bug" [ref=e569]
+              - row "refactor Refactorisation" [ref=e570]:
+                - cell "refactor" [ref=e571]:
+                  - code [ref=e572]: refactor
+                - cell "Refactorisation" [ref=e573]
+              - row "perf Amélioration de performance" [ref=e574]:
+                - cell "perf" [ref=e575]:
+                  - code [ref=e576]: perf
+                - cell "Amélioration de performance" [ref=e577]
+              - row "test Ajout/modification de tests" [ref=e578]:
+                - cell "test" [ref=e579]:
+                  - code [ref=e580]: test
+                - cell "Ajout/modification de tests" [ref=e581]
+              - row "doc Documentation" [ref=e582]:
+                - cell "doc" [ref=e583]:
+                  - code [ref=e584]: doc
+                - cell "Documentation" [ref=e585]
+              - row "style Formatage (sans impact fonctionnel)" [ref=e586]:
+                - cell "style" [ref=e587]:
+                  - code [ref=e588]: style
+                - cell "Formatage (sans impact fonctionnel)" [ref=e589]
+              - row "build Build, dépendances" [ref=e590]:
+                - cell "build" [ref=e591]:
+                  - code [ref=e592]: build
+                - cell "Build, dépendances" [ref=e593]
+              - row "ci CI/CD" [ref=e594]:
+                - cell "ci" [ref=e595]:
+                  - code [ref=e596]: ci
+                - cell "CI/CD" [ref=e597]
+              - row "chore Autres tâches" [ref=e598]:
+                - cell "chore" [ref=e599]:
+                  - code [ref=e600]: chore
+                - cell "Autres tâches" [ref=e601]
+          - heading "Scopes courants" [level=3] [ref=e602]
+          - table [ref=e603]:
+            - rowgroup [ref=e604]:
+              - row "Scope Description" [ref=e605]:
+                - columnheader "Scope" [ref=e606]
+                - columnheader "Description" [ref=e607]
+            - rowgroup [ref=e608]:
+              - row "api Backend PHP" [ref=e609]:
+                - cell "api" [ref=e610]:
+                  - code [ref=e611]: api
+                - cell "Backend PHP" [ref=e612]
+              - row "front Frontend Nuxt/Vue" [ref=e613]:
+                - cell "front" [ref=e614]:
+                  - code [ref=e615]: front
+                - cell "Frontend Nuxt/Vue" [ref=e616]
+              - row "e2e Tests E2E" [ref=e617]:
+                - cell "e2e" [ref=e618]:
+                  - code [ref=e619]: e2e
+                - cell "Tests E2E" [ref=e620]
+              - row "release Release" [ref=e621]:
+                - cell "release" [ref=e622]:
+                  - code [ref=e623]: release
+                - cell "Release" [ref=e624]
+          - heading "Format des branches" [level=3] [ref=e625]
+          - code [ref=e627]: "{type}/{TICKET-ID}-{description}"
+          - paragraph [ref=e628]:
+            - text: "Exemple :"
+            - code [ref=e629]: feat/TGD-123-ajout-formulaire-contact
+          - heading "Tests" [level=2] [ref=e630]
+          - heading "Structure" [level=3] [ref=e631]
+          - code [ref=e633]: "tests/ ├── unit/ # Tests unitaires (PHPUnit) ├── functional/ # Tests fonctionnels └── bootstrap.php"
+          - heading "Conventions" [level=3] [ref=e634]
+          - list [ref=e635]:
+            - listitem [ref=e636]:
+              - text: Utiliser les mocks/stubs dans
+              - code [ref=e637]: Infrastructure/InMemory/
+            - listitem [ref=e638]: Un test par comportement
+            - listitem [ref=e639]:
+              - text: "Nommer explicitement :"
+              - code [ref=e640]: testDoitRetournerUneErreurSiIdInvalide()
+          - heading "Makefile" [level=2] [ref=e641]
+          - paragraph [ref=e642]: "Commandes standards disponibles :"
+          - table [ref=e643]:
+            - rowgroup [ref=e644]:
+              - row "Commande Description" [ref=e645]:
+                - columnheader "Commande" [ref=e646]
+                - columnheader "Description" [ref=e647]
+            - rowgroup [ref=e648]:
+              - row "make up Démarrer l'environnement" [ref=e649]:
+                - cell "make up" [ref=e650]:
+                  - code [ref=e651]: make up
+                - cell "Démarrer l'environnement" [ref=e652]
+              - row "make down Stopper l'environnement" [ref=e653]:
+                - cell "make down" [ref=e654]:
+                  - code [ref=e655]: make down
+                - cell "Stopper l'environnement" [ref=e656]
+              - row "make api Shell dans le container API" [ref=e657]:
+                - cell "make api" [ref=e658]:
+                  - code [ref=e659]: make api
+                - cell "Shell dans le container API" [ref=e660]
+              - row "make front Shell dans le container Front" [ref=e661]:
+                - cell "make front" [ref=e662]:
+                  - code [ref=e663]: make front
+                - cell "Shell dans le container Front" [ref=e664]
+              - row "make phpstan Analyse statique" [ref=e665]:
+                - cell "make phpstan" [ref=e666]:
+                  - code [ref=e667]: make phpstan
+                - cell "Analyse statique" [ref=e668]
+              - row "make cs-fix Corriger le style" [ref=e669]:
+                - cell "make cs-fix" [ref=e670]:
+                  - code [ref=e671]: make cs-fix
+                - cell "Corriger le style" [ref=e672]
+              - row "make test Lancer les tests" [ref=e673]:
+                - cell "make test" [ref=e674]:
+                  - code [ref=e675]: make test
+                - cell "Lancer les tests" [ref=e676]
+          - heading "Bundles internes Additi" [level=2] [ref=e677]
+          - table [ref=e678]:
+            - rowgroup [ref=e679]:
+              - row "Bundle Usage" [ref=e680]:
+                - columnheader "Bundle" [ref=e681]
+                - columnheader "Usage" [ref=e682]
+            - rowgroup [ref=e683]:
+              - row "additi/keycloak-bundle Authentification SSO" [ref=e684]:
+                - cell "additi/keycloak-bundle" [ref=e685]:
+                  - code [ref=e686]: additi/keycloak-bundle
+                - cell "Authentification SSO" [ref=e687]
+              - row "additi/correlation-id-bundle Traçabilité des requêtes" [ref=e688]:
+                - cell "additi/correlation-id-bundle" [ref=e689]:
+                  - code [ref=e690]: additi/correlation-id-bundle
+                - cell "Traçabilité des requêtes" [ref=e691]
+              - row "additi/salesforce-client-bundle Intégration CRM" [ref=e692]:
+                - cell "additi/salesforce-client-bundle" [ref=e693]:
+                  - code [ref=e694]: additi/salesforce-client-bundle
+                - cell "Intégration CRM" [ref=e695]
+              - row "additi/directus-client-bundle Intégration CMS" [ref=e696]:
+                - cell "additi/directus-client-bundle" [ref=e697]:
+                  - code [ref=e698]: additi/directus-client-bundle
+                - cell "Intégration CMS" [ref=e699]
+              - row "additi/php-qa Outils de qualité" [ref=e700]:
+                - cell "additi/php-qa" [ref=e701]:
+                  - code [ref=e702]: additi/php-qa
+                - cell "Outils de qualité" [ref=e703]
+              - row "additi/php-tools Utilitaires communs" [ref=e704]:
+                - cell "additi/php-tools" [ref=e705]:
+                  - code [ref=e706]: additi/php-tools
+                - cell "Utilitaires communs" [ref=e707]
+          - heading "Frontend Nuxt" [level=2] [ref=e708]
+          - heading "Stack" [level=3] [ref=e709]
+          - list [ref=e710]:
+            - listitem [ref=e711]: Nuxt 4 + Vue 3 + TypeScript
+            - listitem [ref=e712]: Pinia (state management)
+            - listitem [ref=e713]: TailwindCSS + @additi/tailwind-config
+            - listitem [ref=e714]: Vitest (tests)
+            - listitem [ref=e715]: Vue Query (TanStack)
+          - heading "Structure" [level=3] [ref=e716]
+          - code [ref=e718]: "sources/{projet}-front/ ├── components/ # Composants Vue ├── composables/ # Hooks réutilisables ├── pages/ # Routes Nuxt ├── stores/ # Stores Pinia ├── queries/ # Vue Query └── utils/ # Utilitaires"
+          - heading "CI/CD GitLab" [level=2] [ref=e719]
+          - paragraph [ref=e720]: "Pipeline standard avec :"
+          - list [ref=e721]:
+            - listitem [ref=e722]: Lint (Dockerfile, code)
+            - listitem [ref=e723]: Build (API + Front)
+            - listitem [ref=e724]: Tests (unitaires, fonctionnels)
+            - listitem [ref=e725]: Deploy (int1 → rec1 → preprod → prod)
+            - listitem [ref=e726]: Tests E2E
+          - paragraph [ref=e727]: "Environnements :"
+          - list [ref=e728]:
+            - listitem [ref=e729]:
+              - code [ref=e730]: int1
+              - text: ": branches feature"
+            - listitem [ref=e731]:
+              - code [ref=e732]: rec1
+              - text: ": main + MR"
+            - listitem [ref=e733]:
+              - code [ref=e734]: preprod
+              - text: ": tags RC ("
+              - code [ref=e735]: x.y.z-rcN
+              - text: )
+            - listitem [ref=e736]:
+              - code [ref=e737]: prod
+              - text: ": tags release ("
+              - code [ref=e738]: x.y.z
+              - text: )
+  - contentinfo [ref=e739]: Made with ❤️ by Mathieu Durand
