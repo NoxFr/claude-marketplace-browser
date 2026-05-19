@@ -46,13 +46,18 @@ function build() {
   const categories = [...new Set(agents.map(a => a.category).filter(Boolean))].sort();
   const { name: marketplaceName } = readMarketplaceMeta();
 
+  console.log(`\n🏪  Building marketplace: ${marketplaceName}`);
+  console.log(`📂  Source : ${path.resolve(MARKETPLACE_PATH)}`);
+  console.log(`📦  Output : ${DIST_DIR}\n`);
+
   fs.mkdirSync(DIST_DIR, { recursive: true });
   fs.mkdirSync(path.join(DIST_DIR, 'agents'), { recursive: true });
 
   const indexHtml = rewriteForIndex(renderListPage(agents, categories, '', MARKETPLACE_URL));
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), indexHtml);
-  console.log('  dist/index.html');
+  console.log('  ✅ index.html');
 
+  const built = [];
   for (const agent of agents) {
     const result = readAgentDetail(agent.name);
     if (!result) continue;
@@ -61,19 +66,21 @@ function build() {
     fs.mkdirSync(agentDir, { recursive: true });
     const html = rewriteForAgent(renderDetailPage(result.agent, result.readmeHtml, result.components, marketplaceName));
     fs.writeFileSync(path.join(agentDir, 'index.html'), html);
-    console.log(`  dist/agents/${slug}/index.html`);
+    built.push(agent.name);
   }
 
   fs.copyFileSync(path.join(PUBLIC_DIR, 'styles.css'), path.join(DIST_DIR, 'styles.css'));
   fs.copyFileSync(path.join(PUBLIC_DIR, 'search.js'), path.join(DIST_DIR, 'search.js'));
-  console.log('  dist/styles.css');
-  console.log('  dist/search.js');
 
-  console.log(`\nStatic site written to ${DIST_DIR}`);
-  console.log(`Marketplace: ${path.resolve(MARKETPLACE_PATH)}`);
-  if (agents.length === 0) {
-    console.warn('[build] No plugins found in marketplace.json');
+  if (built.length === 0) {
+    console.warn('⚠️  No plugins found in marketplace.json');
+  } else {
+    console.log(`\n🧩  ${built.length} plugin${built.length !== 1 ? 's' : ''}:`);
+    for (const name of built) console.log(`     · ${name}`);
   }
+
+  const indexPath = path.join(DIST_DIR, 'index.html');
+  console.log(`\n🚀  Open: \x1b]8;;file://${indexPath}\x1b\\file://${indexPath}\x1b]8;;\x1b\\\n`);
 }
 
 build();
