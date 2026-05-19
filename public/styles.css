@@ -25,3 +25,16 @@ details[open] summary .chevron-icon {
 .prose-detail pre code { background: none; color: inherit; padding: 0; }
 .prose-detail blockquote { border-left: 3px solid #424754; padding-left: 1rem; color: #8c909f; margin-bottom: 1rem; }
 .prose-detail hr { border: none; border-top: 1px solid #424754; margin: 1.5rem 0; }
+
+.prose-detail table { width: 100%; border-collapse: collapse; margin-bottom: 1rem; overflow-x: auto; display: block; }
+.prose-detail thead { background: #1E293B; }
+.prose-detail th { padding: 0.6rem 1rem; text-align: left; color: #dae2fd; font-weight: 600; border: 1px solid #424754; }
+.prose-detail td { padding: 0.5rem 1rem; color: #c2c6d6; border: 1px solid #424754; }
+.prose-detail tbody tr:nth-child(odd) { background: #0F172A; }
+.prose-detail tbody tr:nth-child(even) { background: #111827; }
+
+.prose-detail img { max-width: 100%; height: auto; border-radius: 8px; margin: 0.5rem 0 1rem; display: block; }
+
+.prose-detail ul ul, .prose-detail ol ol, .prose-detail ul ol, .prose-detail ol ul { margin: 0.25rem 0 0.25rem 1.5rem; }
+
+.prose-detail del { color: #6b7280; text-decoration: line-through; }
