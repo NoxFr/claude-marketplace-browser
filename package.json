@@ -9,16 +9,22 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "build": "node scripts/build.js"
+    "build:css": "tailwindcss -i src/styles.css -o public/styles.css --minify",
+    "watch:css": "tailwindcss -i src/styles.css -o public/styles.css --watch",
+    "build": "npm run build:css && node scripts/build.js"
   },
   "files": [
     "scripts/",
     "lib/",
     "public/",
+    "src/",
+    "tailwind.config.js",
     "browser.config.js"
   ],
   "dependencies": {
-    "js-yaml": "^4.1.0",
-    "marked": "^9.0.0"
+    "marked": "^18.0.4"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
   }
 }
