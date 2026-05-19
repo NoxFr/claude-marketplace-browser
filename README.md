@@ -211,8 +211,8 @@ The `.github/workflows/publish.yml` workflow runs `npm publish` automatically us
 - **Runtime**: Node.js (no framework, built-in `http` module)
 - **Frontend**: Vanilla ES2020 — client-side search/filter via `data-*` attributes
 - **Templating**: Server-side HTML string rendering
+- **Styles**: [Tailwind CSS](https://tailwindcss.com/) compiled at build time (no CDN, no runtime overhead)
 - **Markdown**: [marked](https://marked.js.org/) for plugin README and component docs
-- **Config parsing**: [js-yaml](https://github.com/nodeca/js-yaml)
 
 ## Contributing
 

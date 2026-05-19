@@ -4,12 +4,18 @@ This document describes how AI agents (Claude Code) should work with this reposi
 
 ## Project Overview
 
-**claude-marketplace-browser** is a lightweight Node.js/HTMX web application that renders a browsable UI from a `marketplace.json` plugin registry. The server (`server.js`) is a single-file HTTP server with inline HTML rendering — no build step, no framework.
+**claude-marketplace-browser** is a lightweight Node.js web application that renders a browsable UI from a `marketplace.json` plugin registry.
 
 Key files:
-- `server.js` — HTTP server, HTML rendering, plugin reading
+- `server.js` — HTTP server and routing
+- `lib/data.js` — reads and resolves plugins from the marketplace directory
+- `lib/render/` — server-side HTML rendering (layout, cards, detail pages, badges)
+- `src/styles.css` — Tailwind CSS source (input)
+- `public/styles.css` — generated CSS (committed, used by server and static build)
+- `public/search.js` — client-side search/filter
+- `tailwind.config.js` — Tailwind configuration and safelist for dynamic classes
+- `scripts/build.js` — generates a self-contained static site for GitHub Pages
 - `browser.config.js` — marketplace path resolution (CLI arg / env var)
-- `scripts/build-static.js` — generates a self-contained static site for GitHub Pages
 - `example/` — example marketplace used for development and the live demo
 - `openspec/` — change proposals, specs, and tasks (see workflow below)
 
@@ -28,11 +34,24 @@ The server reads `./example` by default. Point it elsewhere:
 MARKETPLACE_PATH=/path/to/marketplace npm start
 ```
 
-### Building the static demo
+### CSS
+
+Styles are in `src/styles.css` and compiled by Tailwind CLI to `public/styles.css`.
 
 ```bash
-node scripts/build-static.js
-# Outputs to public/ (gitignored)
+npm run build:css   # one-shot build (minified)
+npm run watch:css   # watch mode for development
+```
+
+Run `watch:css` in a separate terminal alongside `dev` when editing templates or styles.
+
+`public/styles.css` is committed — npm consumers get it without needing to run the build.
+
+### Building the static site
+
+```bash
+npm run build
+# Outputs to dist/
 ```
 
 ## Change Workflow (OpenSpec)
@@ -59,17 +78,16 @@ Always read `tasks.md` and relevant specs before making changes. Mark tasks `[x]
 
 ## Coding Guidelines
 
-- **No build step**: the server is a single `server.js` file — keep it that way.
-- **No unnecessary dependencies**: the only runtime deps are `js-yaml` and `marked`.
-- **Inline styles**: CSS lives inside `layout()` in `server.js` — do not introduce external stylesheets.
+- **Minimal deps**: runtime dep is `marked` only. Tailwind CLI is a devDep (build-time only).
 - **No comments** unless the why is non-obvious.
+- **Dynamic Tailwind classes**: classes built from template strings (e.g. `text-${color}`) must be added to the `safelist` in `tailwind.config.js`, then rebuild CSS.
 - **Commits**: follow [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, etc.).
 
 ## Testing
 
 There is no automated test suite. Verify changes by:
 1. Running `npm start` and checking the browser at http://localhost:3000
-2. Running `node scripts/build-static.js` and opening `public/index.html`
+2. Running `npm run build` and opening `dist/index.html`
 3. Checking all plugin cards and at least one detail page
 
-When modifying plugin rendering, test against the full `example/` marketplace (8 plugins covering all component types).
+When modifying plugin rendering, test against the full `example/` marketplace.
