@@ -2,11 +2,11 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { readAgents, readAgentDetail, filterByType, readMarketplaceMeta } = require('./lib/data');
-const { escapeHtml, layout, renderListPage, renderDetailPage } = require('./lib/render');
+const { readAgents, readAgentDetail, filterByType, readMarketplaceMeta } = require('../lib/data');
+const { escapeHtml, layout, renderListPage, renderDetailPage } = require('../lib/render');
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
-const { MARKETPLACE_URL } = require('./browser.config');
+const { MARKETPLACE_URL } = require('../browser.config');
 
 const server = http.createServer((req, res) => {
   const url = new URL(req.url, `http://localhost:${PORT}`);
@@ -44,7 +44,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.method === 'GET' && pathname === '/styles.css') {
-    const cssPath = path.join(__dirname, 'public', 'styles.css');
+    const cssPath = path.join(__dirname, '..', 'public', 'styles.css');
     try {
       const content = fs.readFileSync(cssPath);
       res.writeHead(200, { 'Content-Type': 'text/css; charset=utf-8' });
@@ -57,7 +57,7 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.method === 'GET' && pathname === '/search.js') {
-    const jsPath = path.join(__dirname, 'public', 'search.js');
+    const jsPath = path.join(__dirname, '..', 'public', 'search.js');
     try {
       const content = fs.readFileSync(jsPath);
       res.writeHead(200, { 'Content-Type': 'application/javascript; charset=utf-8' });
@@ -81,5 +81,5 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`[marketplace] Server running at http://localhost:${PORT}`);
-  console.log(`[marketplace] Using marketplace: ${path.resolve(require('./browser.config').MARKETPLACE_PATH)}`);
+  console.log(`[marketplace] Using marketplace: ${path.resolve(require('../browser.config').MARKETPLACE_PATH)}`);
 });

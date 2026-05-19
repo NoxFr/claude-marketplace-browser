@@ -150,7 +150,7 @@ Point the server or build at your marketplace:
 
 ```bash
 # CLI argument (dev server)
-node server.js --marketplace-path /path/to/marketplace
+node scripts/dev-server.js --marketplace-path /path/to/marketplace
 
 # Environment variable
 MARKETPLACE_PATH=/path/to/marketplace npm start
@@ -161,7 +161,7 @@ The target directory must contain a `.claude-plugin/marketplace.json` file.
 ### Marketplace URL (for install commands)
 
 ```bash
-node server.js --marketplace-path /path/to/marketplace --marketplace-url https://github.com/myorg/my-plugins
+node scripts/dev-server.js --marketplace-path /path/to/marketplace --marketplace-url https://github.com/myorg/my-plugins
 MARKETPLACE_URL=https://github.com/myorg/my-plugins npm start
 ```
 
