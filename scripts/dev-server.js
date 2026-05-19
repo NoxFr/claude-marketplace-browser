@@ -22,8 +22,8 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  if (req.method === 'GET' && pathname.startsWith('/agents/')) {
-    const name = decodeURIComponent(pathname.slice('/agents/'.length));
+  if (req.method === 'GET' && pathname.startsWith('/plugins/')) {
+    const name = decodeURIComponent(pathname.slice('/plugins/'.length));
     const result = readAgentDetail(name);
     if (!result) {
       res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });

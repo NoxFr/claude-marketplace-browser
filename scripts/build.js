@@ -28,7 +28,7 @@ function rewriteForIndex(html) {
   return html
     .replace(/href="\/styles\.css"/g, 'href="styles.css"')
     .replace(/src="\/search\.js"/g, 'src="search.js"')
-    .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="agents/${name}/index.html"`)
+    .replace(/href="\/plugins\/([^"]+)"/g, (_, name) => `href="plugins/${name}/index.html"`)
     .replace(/href="\/((\?[^"]*)?)"/g, (_, qs) => `href="index.html${qs}"`);
 }
 
@@ -37,7 +37,7 @@ function rewriteForAgent(html) {
   return html
     .replace(/href="\/styles\.css"/g, 'href="../../styles.css"')
     .replace(/src="\/search\.js"/g, 'src="../../search.js"')
-    .replace(/href="\/agents\/([^"]+)"/g, (_, name) => `href="../../agents/${name}/index.html"`)
+    .replace(/href="\/plugins\/([^"]+)"/g, (_, name) => `href="../../plugins/${name}/index.html"`)
     .replace(/href="\/((\?[^"]*)?)"/g, (_, qs) => `href="../../index.html${qs}"`);
 }
 
@@ -51,7 +51,7 @@ function build() {
   console.log(`📦  Output : ${DIST_DIR}\n`);
 
   fs.mkdirSync(DIST_DIR, { recursive: true });
-  fs.mkdirSync(path.join(DIST_DIR, 'agents'), { recursive: true });
+  fs.mkdirSync(path.join(DIST_DIR, 'plugins'), { recursive: true });
 
   const indexHtml = rewriteForIndex(renderListPage(agents, categories, '', MARKETPLACE_URL));
   fs.writeFileSync(path.join(DIST_DIR, 'index.html'), indexHtml);
@@ -62,7 +62,7 @@ function build() {
     const result = readAgentDetail(agent.name);
     if (!result) continue;
     const slug = encodeURIComponent(agent.name);
-    const agentDir = path.join(DIST_DIR, 'agents', slug);
+    const agentDir = path.join(DIST_DIR, 'plugins', slug);
     fs.mkdirSync(agentDir, { recursive: true });
     const html = rewriteForAgent(renderDetailPage(result.agent, result.readmeHtml, result.components, marketplaceName));
     fs.writeFileSync(path.join(agentDir, 'index.html'), html);
