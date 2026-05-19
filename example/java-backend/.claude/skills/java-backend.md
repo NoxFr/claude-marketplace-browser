@@ -10,6 +10,10 @@ Ce skill détecte automatiquement le type de projet (API Web ou Worker) et charg
 /java-backend <description de la tâche>
 ```
 
+**Ressources complémentaires :**
+- **API Web (WebMVC)** : Voir `references/application-web.md` pour les spécificités REST
+- **Persistance JPA** : Voir `references/infrastructure-jpa.md` pour JPA/Spring Data et Testcontainers
+
 ## Principes appliqués
 
 - **Architecture hexagonale** : séparation stricte domain / application / infrastructure
