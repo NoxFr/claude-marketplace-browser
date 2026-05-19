@@ -4,6 +4,7 @@
   "plugins": [
     {
       "name": "java-backend",
+      "source": "./java-backend",
       "description": "Développement Java/Spring Boot selon les préconisations DDD hexagonal, Spring Boot 4, Java 25. Détecte automatiquement le type de projet et charge les spécificités correspondantes.",
       "category": "Development",
       "version": "1.2.0",
@@ -11,6 +12,7 @@
     },
     {
       "name": "php-review",
+      "source": "./php-review",
       "description": "Revue de code PHP avec vérification des bonnes pratiques, sécurité et normes PSR. Génère un rapport détaillé des points d'amélioration.",
       "category": "Code Review",
       "version": "0.8.1",
@@ -19,6 +21,7 @@
     },
     {
       "name": "security-agent",
+      "source": "./security-agent",
       "description": "Agent autonome d'analyse de vulnérabilités. Effectue des audits de sécurité approfondis sur le code source et les dépendances.",
       "category": "Security",
       "version": "2.0.0",
@@ -26,6 +29,7 @@
     },
     {
       "name": "git-hooks-suite",
+      "source": "./git-hooks-suite",
       "description": "Collection de hooks Git pour l'automatisation des workflows : validation de messages de commit, lint pré-commit, notification post-merge.",
       "category": "Automation",
       "version": "1.0.3",
@@ -33,6 +37,7 @@
     },
     {
       "name": "mcp-database",
+      "source": "./mcp-database",
       "description": "Serveurs MCP pour l'accès aux bases de données relationnelles et NoSQL. Supporte PostgreSQL, MySQL et MongoDB avec introspection de schéma.",
       "category": "Integration",
       "version": "3.1.0",
@@ -40,6 +45,7 @@
     },
     {
       "name": "lsp-tools",
+      "source": "./lsp-tools",
       "description": "Serveurs LSP pour l'analyse statique de code. Intègre TypeScript Language Server, ESLint LSP et Pylsp pour une analyse multi-langage.",
       "category": "Development",
       "version": "1.5.0",
@@ -47,6 +53,7 @@
     },
     {
       "name": "full-stack-toolkit",
+      "source": "./full-stack-toolkit",
       "description": "Suite complète d'outils pour le développement full-stack moderne. Combine skills de déploiement, agents d'architecture, hooks CI/CD, serveurs MCP Git et LSP.",
       "category": "Development",
       "version": "4.0.0",
@@ -59,7 +66,8 @@
     },
     {
       "name": "generic-plugin",
-      "description": "Plugin utilitaire générique sans composant déclaré. Illustre le label par défaut affiché lorsqu'aucun type de composant n'est spécifié.",
+      "source": "./generic-plugin",
+      "description": "Plugin utilitaire générique sans composant déclaré. Illustre la découverte automatique des composants depuis les dossiers standards.",
       "category": "Utility",
       "version": "0.1.0"
     }
