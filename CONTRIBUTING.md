@@ -15,7 +15,10 @@ git clone <repo-url>
 cd claude-marketplace-browser
 npm install
 
-# Start dev server with live-reload
+# In one terminal: watch and recompile CSS on template changes
+npm run watch:css
+
+# In another terminal: start dev server with live-reload
 npm run dev
 ```
 
@@ -24,16 +27,33 @@ Open http://localhost:3000. The server watches for changes and restarts automati
 ## Project Structure
 
 ```
-server.js           # HTTP server and HTML rendering
-browser.config.js   # Marketplace path configuration
-scripts/            # Build utilities
-example/            # Example marketplace for development
+server.js               # HTTP server and routing
+browser.config.js       # Marketplace path resolution (CLI arg / env var)
+lib/
+  data.js               # Reads and resolves plugins from the marketplace directory
+  render/               # Server-side HTML rendering
+    layout.js           # Page shell, header, sidebar, footer
+    page-list.js        # Plugin grid page
+    page-detail.js      # Plugin detail page
+    card.js             # Plugin card component
+    badge.js            # Component type badges
+src/
+  styles.css            # Tailwind CSS source (input)
+public/
+  styles.css            # Generated CSS — committed, do not edit by hand
+  search.js             # Client-side search and filter
+tailwind.config.js      # Tailwind configuration and safelist for dynamic classes
+scripts/
+  build.js              # Generates static site to dist/
+example/                # Example marketplace for development and the live demo
   .claude-plugin/
     marketplace.json
-openspec/           # Change proposals and specifications
-  changes/          # Active and archived changes
-  specs/            # Capability specifications
+openspec/               # Change proposals and specifications
+  changes/              # Active and archived changes
+  specs/                # Capability specifications
 ```
+
+**Important**: Tailwind classes built from template strings (e.g. `text-${color}`) are not scanned statically. Add them to the `safelist` in `tailwind.config.js`, then run `npm run build:css`.
 
 ## Proposing a Change
 
