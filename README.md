@@ -9,7 +9,18 @@ npx claude-marketplace-browser /path/to/your-marketplace
 
 Generates a fully static site from your `marketplace.json` — searchable plugin gallery, per-plugin detail pages with rendered docs, one-click install commands. Deploy anywhere: GitHub Pages, GitLab Pages, S3.
 
+## Features
+
+- Searchable and filterable plugin gallery (by name, description, category) — client-side, no server required
+- Plugin detail pages with rendered README and per-component documentation
+- Support for all Claude plugin component types: skills, commands, agents, hooks, MCP servers, LSP servers
+- **One-click install**: each plugin detail page shows the exact `claude plugin install` command, copied to clipboard on click
+- **Add marketplace banner**: the list page shows the `claude plugin marketplace add` command to register this marketplace in Claude Code
+- Color-coded badges per component type
+
 ## Table of Contents
+
+- [Features](#features)
 
 - [Static Site (GitHub Pages / GitLab Pages)](#static-site-github-pages--gitlab-pages)
 - [Local Dev Server](#local-dev-server)
@@ -128,7 +139,7 @@ MARKETPLACE_PATH=/path/to/marketplace npm start
 
 The target directory must contain a `.claude-plugin/marketplace.json` file.
 
-### Marketplace URL (for install commands)
+### Marketplace URL
 
 ```bash
 node scripts/dev-server.js --marketplace-path /path/to/marketplace --marketplace-url https://github.com/myorg/my-plugins
