@@ -5,7 +5,7 @@ Le script SHALL accepter un chemin de marketplace en argument et générer un do
 
 #### Scenario: Build avec marketplace valide
 - **WHEN** `node scripts/build.js <path>` est exécuté avec un marketplace valide
-- **THEN** un dossier `dist/` est créé avec `index.html`, `styles.css`, `search.js` et un dossier `agents/` contenant une sous-page par plugin valide
+- **THEN** un dossier `dist/` est créé avec `index.html`, `styles.css`, `search.js` et un dossier `plugins/` contenant une sous-page par plugin valide
 
 #### Scenario: Utilisation via npx
 - **WHEN** `npx claude-marketplace-browser <path>` est exécuté depuis n'importe quel répertoire
@@ -17,17 +17,17 @@ Le script SHALL accepter un chemin de marketplace en argument et générer un do
 
 #### Scenario: Plugins locaux avec manifeste fusionné
 - **WHEN** un plugin a un `source` relatif et un `plugin.json` local avec des champs de métadonnées
-- **THEN** les pages générées (`dist/index.html` et `dist/agents/<name>/index.html`) reflètent les valeurs du manifeste local
+- **THEN** les pages générées (`dist/index.html` et `dist/plugins/<name>/index.html`) reflètent les valeurs du manifeste local
 
 ### Requirement: Structure du dossier dist/
 Le dossier `dist/` généré SHALL contenir une page d'index, une page de détail par plugin, et les assets statiques.
 
 #### Scenario: Structure complète générée
 - **WHEN** le build se termine avec succès
-- **THEN** `dist/` contient `index.html`, `styles.css`, `search.js`, et `agents/{nom-plugin}/index.html` pour chaque plugin
+- **THEN** `dist/` contient `index.html`, `styles.css`, `search.js`, et `plugins/{nom-plugin}/index.html` pour chaque plugin
 
 #### Scenario: Pages de détail accessibles sans serveur
-- **WHEN** `dist/agents/{nom}/index.html` est ouvert dans un navigateur (via un serveur HTTP statique)
+- **WHEN** `dist/plugins/{nom}/index.html` est ouvert dans un navigateur (via un serveur HTTP statique)
 - **THEN** la page de détail du plugin s'affiche avec son README et ses composants
 
 ### Requirement: Attributs data-* sur les cartes pour le filtrage

@@ -22,9 +22,3 @@ La page de détail SHALL afficher le contenu de `SKILL.md` ou `README.md` du plu
 - **WHEN** le plugin ne possède ni `SKILL.md` ni `README.md`
 - **THEN** la section description longue n'est pas affichée
 
-### Requirement: Lien de retour
-La page de détail SHALL contenir un lien de retour vers la liste.
-
-#### Scenario: Clic sur retour
-- **WHEN** l'utilisateur clique sur "Retour"
-- **THEN** le navigateur revient à `/` via navigation HTMX (hx-boost) ou standard

@@ -29,9 +29,3 @@ Chaque carte de plugin SHALL contenir un lien vers la page de détail correspond
 - **WHEN** l'utilisateur clique sur la carte d'un plugin
 - **THEN** le navigateur charge `/plugins/<nom>` via hx-boost ou navigation standard
 
-### Requirement: Retour à la liste depuis le détail
-Chaque page de détail SHALL contenir un lien de retour vers la liste.
-
-#### Scenario: Clic sur retour
-- **WHEN** l'utilisateur clique sur "Retour à la liste"
-- **THEN** le navigateur revient à `/`

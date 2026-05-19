@@ -32,7 +32,7 @@ function rewriteForIndex(html) {
     .replace(/href="\/((\?[^"]*)?)"/g, (_, qs) => `href="index.html${qs}"`);
 }
 
-// Rewrite absolute paths for agent detail pages (dist/agents/{name}/index.html)
+// Rewrite absolute paths for plugin detail pages (dist/plugins/{name}/index.html)
 function rewriteForAgent(html) {
   return html
     .replace(/href="\/styles\.css"/g, 'href="../../styles.css"')
