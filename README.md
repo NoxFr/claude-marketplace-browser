@@ -1,42 +1,24 @@
 # Claude Marketplace Browser
 
-A lightweight web UI for browsing Claude plugin marketplaces. Displays plugins, their components (skills, agents, MCP servers, hooks, etc.), and renders their documentation in a clean interface.
-
 [![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-blue)](https://noxfr.github.io/claude-marketplace-browser)
 [![npm](https://img.shields.io/npm/v/claude-marketplace-browser)](https://www.npmjs.com/package/claude-marketplace-browser)
 
+```bash
+npx claude-marketplace-browser /path/to/your-marketplace
+```
+
+Generates a fully static site from your `marketplace.json` — searchable plugin gallery, per-plugin detail pages with rendered docs, one-click install commands. Deploy anywhere: GitHub Pages, GitLab Pages, S3.
+
 ## Table of Contents
 
-- [Overview](#overview)
-- [Features](#features)
 - [Static Site (GitHub Pages / GitLab Pages)](#static-site-github-pages--gitlab-pages)
-- [Dev Server](#dev-server)
-- [Configuration](#configuration)
+- [Local Dev Server](#local-dev-server)
 - [Marketplace Format](#marketplace-format)
-- [Publishing to npm](#publishing-to-npm)
 - [Stack](#stack)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Overview
-
-The browser reads a `marketplace.json` file from a local directory and can either serve a live dev server or generate a fully static site deployable anywhere (GitHub Pages, GitLab Pages, S3, etc.).
-
-## Features
-
-- Searchable and filterable plugin gallery (by name, description, category) — client-side, no server required
-- Plugin detail pages with rendered README and per-component documentation
-- Support for all Claude plugin component types: skills, commands, agents, hooks, MCP servers, LSP servers
-- **One-click install**: each plugin detail page shows the exact `claude plugin install` command, copied to clipboard on click
-- **Add marketplace banner**: the list page shows the `claude plugin marketplace add` command to register this marketplace in Claude Code
-- Color-coded badges per component type
-- Markdown rendering for plugin and component documentation
-
 ## Static Site (GitHub Pages / GitLab Pages)
-
-Generate a fully static `dist/` folder from your marketplace and host it anywhere — no server needed.
-
-### Quick start via npx
 
 ```bash
 npx claude-marketplace-browser /path/to/your-marketplace
@@ -125,34 +107,22 @@ pages:
     - main
 ```
 
-## Dev Server
+## Local Dev Server
 
-For local development with live reload:
+An alternative to `npx` for browsing your marketplace locally without generating static files.
 
 ```bash
 npm install
-npm run dev
+MARKETPLACE_PATH=/path/to/marketplace npm run dev
 ```
 
-Open http://localhost:3000 in your browser.
+Open http://localhost:3000 in your browser. The `--watch` flag reloads automatically on file changes.
 
 ```bash
-# Start the server
-npm start
-
-# Start with live-reload
-npm run dev
-```
-
-## Configuration
-
-Point the server or build at your marketplace:
-
-```bash
-# CLI argument (dev server)
+# CLI flags
 node scripts/dev-server.js --marketplace-path /path/to/marketplace
 
-# Environment variable
+# Environment variables
 MARKETPLACE_PATH=/path/to/marketplace npm start
 ```
 
@@ -169,42 +139,7 @@ Without this option, the banner shows a `<path-or-url>` placeholder.
 
 ## Marketplace Format
 
-`marketplace.json` structure:
-
-```json
-{
-  "name": "My Marketplace",
-  "owner": "Team Name",
-  "plugins": [
-    {
-      "name": "my-plugin",
-      "description": "What this plugin does",
-      "category": "Development",
-      "version": "1.0.0",
-      "skills": ["skill-name"],
-      "mcpServers": ["server-name"]
-    }
-  ]
-}
-```
-
-Supported component fields: `skills`, `commands`, `agents`, `hooks`, `mcpServers`, `lspServers`.
-
-Each component name resolves to a Markdown file inside the plugin directory under `.claude/<type>/<name>.md`. A special value `"./"` reads `SKILL.md` or `README.md` from the plugin root.
-
-## Publishing to npm
-
-This package is published to npm via GitHub Actions on every version tag.
-
-To release a new version:
-
-```bash
-# Bump version in package.json, then:
-git tag v1.2.3
-git push origin v1.2.3
-```
-
-The `.github/workflows/publish.yml` workflow runs `npm publish` automatically using the `NPM_TOKEN` repository secret.
+See the [official plugin marketplace documentation](https://code.claude.com/docs/en/plugin-marketplaces).
 
 ## Stack
 
